@@ -1,3 +1,1 @@
-Test
-
-{{ $page->title }}
+{!! $page->content !!}
