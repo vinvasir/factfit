@@ -169,6 +169,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Backpack\Base\BaseServiceProvider::class,
         Backpack\CRUD\CrudServiceProvider::class,
+        Backpack\LangFileManager\LangFileManagerServiceProvider::class,
         /*
          * Application Service Providers...
          */

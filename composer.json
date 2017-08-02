@@ -8,6 +8,7 @@
         "php": ">=5.6.4",
         "backpack/base": "^0.7.21",
         "backpack/crud": "^3.2",
+        "backpack/langfilemanager": "^1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0"
     },
