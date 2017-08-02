@@ -24,6 +24,7 @@
 
           <!-- ======================================= -->
           <li class="header">{{ trans('backpack::base.user') }}</li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/page') }}"><i class="fa fa-file-o"></i> <span>Pages</span></a></li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/customer') }}"><i class="fa fa-user"></i> <span>Manage Customers</span></a></li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/language') }}"><i class="fa fa-flag-o"></i> <span>Languages</span></a></li>
