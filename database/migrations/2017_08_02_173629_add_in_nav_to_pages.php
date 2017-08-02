@@ -14,7 +14,7 @@ class AddInNavToPages extends Migration
     public function up()
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->boolean('in_nav');
+            $table->boolean('in_nav')->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ class AddInNavToPages extends Migration
     public function down()
     {
         Schema::table('pages', function (Blueprint $table) {
-            //
+            $table->dropColumn('in_nav');
         });
     }
 }
