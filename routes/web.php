@@ -23,3 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     CRUD::resource('customer', 'Admin\CustomerCrudController');
 });
+
+Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
+     ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
