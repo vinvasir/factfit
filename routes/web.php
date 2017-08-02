@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Admin group
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
+    CRUD::resource('customer', 'Admin\CustomerCrudController');
+});
