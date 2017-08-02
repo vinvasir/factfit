@@ -37,6 +37,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        
+                        @foreach($nav_links as $nav_link)
+                        <li>
+                            <a href="{{ $nav_link->slug }}">{{ $nav_link->title }}</a>
+                        </li>
+                        @endforeach            
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -63,12 +69,6 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-
-                                    @foreach($nav_links as $nav_link)
-                                    <li>
-                                      <a href="{{ $nav_link->slug }}">{{ $nav_link->title }}</a>
-                                    </li>
-                                    @endforeach
                                 </ul>
                             </li>
                         @endif
