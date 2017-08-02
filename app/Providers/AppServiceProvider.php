@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Backpack\PageManager\app\Models\Page;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.app', function ($view) {
+            $view->with('nav_links', Page::where(['in_nav' => 1])->get());
+        });
     }
 
     /**
