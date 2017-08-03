@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('layouts.app', function ($view) {
-            return $view->with('nav_links', Page::where(['template' => 'about_us'])->get());
+            return $view->with('nav_links', Page::where(['template' => 'root_pages'])->get()->all());
         });
     }
 
