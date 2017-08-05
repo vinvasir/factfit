@@ -26,6 +26,6 @@ class ThreadTest extends TestCase
 
     		$this->day->setProgress();
     		
-    		$this->assertEquals($this->food_goal_progress, $food_progress);
+    		$this->assertEquals($this->day->food_goal_progress, $food_progress);
     }
 }
