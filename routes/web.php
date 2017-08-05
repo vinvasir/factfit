@@ -24,6 +24,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     CRUD::resource('customer', 'Admin\CustomerCrudController');
 });
 
+// App group
+Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
+		Route::get('/days', 'DaysController@index');
+		Route::post('/days', 'DaysController@store');
+});
+
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/
 Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
     ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
