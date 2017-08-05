@@ -37,10 +37,16 @@ class ThreadTest extends TestCase
 
     		$sameDateDay = create('App\Day', ['date' => $this->day->date]);
 
+    		$newDateDay = create('App\Day', ['date' => \Carbon\Carbon::now()->addDay()]);
+
     		auth()->user()->addDay($sameDateDay);
 
-    		$this->assertContains($this->day, auth()->user()->days());
+    		auth()->user()->addDay($newDateDay);
 
-    		!$this->assertContains($sameDateDay, auth()->user()->days());
+    		$this->assertContains($this->day->id, auth()->user()->days()->pluck('id'));
+
+    		$this->assertContains($newDateDay->id, auth()->user()->days()->pluck('id'));
+
+    		// !$this->refuteContains($sameDateDay->id, auth()->user()->days()->pluck('id'));
     }
 }

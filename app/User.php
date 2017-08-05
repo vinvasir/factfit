@@ -38,5 +38,24 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
-    }    
+    }
+
+    public function days()
+    {
+        return $this->hasMany(Day::class);
+    }
+
+    public function addDay(Day $day)
+    {
+        $dates = $this->days()->pluck('date');
+        
+        foreach ($dates as $date)
+        {
+            if ($date == $day->date) {
+                return false;
+            }
+        }
+
+        return $this->days()->save($day);
+    }
 }
