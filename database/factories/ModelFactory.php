@@ -22,3 +22,18 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Day::class, function (Faker\Generator $faker) {
+    return [
+        'date' => $faker->date,
+        'user_id' => function() {
+        	return factory('App\User')->create()->id;
+        },
+        'editable' => $faker->boolean,
+        'good_food_count' => $faker->integer,
+        'bad_food_count' => $faker->integer,
+        'exercise_minutes_count' => $faker->integer,
+        'good_health_events_count' => $faker->integer,
+        'bad_health_events_count' => $faker->integer
+    ];
+});
