@@ -21,6 +21,11 @@ class ThreadTest extends TestCase
     function a_day_can_set_food_goal_progress()
     {
     		$this->assertInstanceOf('App\Day', $this->day);
-    		dd($this->day);
+
+				$food_progress = $this->day->good_food_count / ($this->day->good_food_count + $this->day->bad_food_count);
+
+    		$this->day->setProgress();
+    		
+    		$this->assertEquals($this->food_goal_progress, $food_progress);
     }
 }
