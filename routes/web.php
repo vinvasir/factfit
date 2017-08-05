@@ -28,6 +28,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 		Route::get('/days', 'DaysController@index');
 		Route::post('/days', 'DaysController@store');
+
+		Route::get('/days/create', 'DaysController@create');
 });
 
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/

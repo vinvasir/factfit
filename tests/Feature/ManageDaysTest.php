@@ -22,7 +22,7 @@ class ManageDaysTest extends TestCase
     function guests_cannot_see_the_create_day_page()
     {
         $this->withExceptionHandling()
-             ->get('/days/create')
+             ->get('/app/days/create')
              ->assertRedirect('/login');
     }
     /** @test */
@@ -35,7 +35,7 @@ class ManageDaysTest extends TestCase
     		$response = $this->post('/days', $day->toArray());
     		// Then when we visit the day page
     		$this->get($response->headers->get('Location'))
-    		      ->assertSee($day->title)
-    			  ->assertSee($day->body);
+    		      ->assertSee($day->date)
+    			  ->assertSee($day->food_goal_progress);
     }
 }
