@@ -25,6 +25,15 @@ class ManageDaysTest extends TestCase
              ->get('/app/days/create')
              ->assertRedirect('/login');
     }
+
+    /** @test */
+    function authenticated_users_can_see_the_create_day_page()
+    {
+        $this->signIn()
+             ->get('/app/days/create')
+             ->assertSee('Create an Entry for this Day');
+    }
+
     /** @test */
     function an_authenticated_user_can_create_new_forum_days()
     {
