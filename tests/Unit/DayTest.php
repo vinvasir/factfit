@@ -20,6 +20,6 @@ class ThreadTest extends TestCase
     /** @test */
     function a_day_can_set_food_goal_progress()
     {
-
+    		$this->assertInstanceOf('App\Day', $this->day);
     }
 }

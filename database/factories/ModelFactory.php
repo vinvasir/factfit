@@ -29,11 +29,11 @@ $factory->define(App\Day::class, function (Faker\Generator $faker) {
         'user_id' => function() {
         	return factory('App\User')->create()->id;
         },
-        'editable' => $faker->boolean,
-        'good_food_count' => $faker->integer,
-        'bad_food_count' => $faker->integer,
-        'exercise_minutes_count' => $faker->integer,
-        'good_health_events_count' => $faker->integer,
-        'bad_health_events_count' => $faker->integer
+        'editable' => rand(0, 1),
+        'good_food_count' => rand(0, 15),
+        'bad_food_count' => rand(0, 15),
+        'exercise_minutes_count' => rand(0, 120),
+        'good_health_events_count' => rand(0, 10),
+        'bad_health_events_count' => rand(0, 10)
     ];
 });
