@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Day extends Model
 {
+		protected $fillable = ['user_id', 'date'];
+
+		public function user()
+		{
+				return $this->belongsTo(User::class);
+		}
+
     public function setProgress()
     {
     		$food_progress = $this->good_food_count / ($this->good_food_count + $this->bad_food_count);

@@ -14,7 +14,9 @@ class DaysController extends Controller
      */
     public function index()
     {
-        //
+        $days = auth()->user()->days;
+
+        return view('days.index', compact('days'));
     }
 
     /**
@@ -35,7 +37,9 @@ class DaysController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        auth()->user()->addDay(request('date'));
+
+        return redirect('/app/days');
     }
 
     /**

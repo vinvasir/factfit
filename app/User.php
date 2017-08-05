@@ -45,17 +45,20 @@ class User extends Authenticatable
         return $this->hasMany(Day::class);
     }
 
-    public function addDay(Day $day)
+    public function addDay($date)
     {
-        $dates = $this->days()->pluck('date');
+        $userDates = $this->days()->pluck('date');
         
-        foreach ($dates as $date)
+        foreach ($userDates as $userDate)
         {
-            if ($date == $day->date) {
+            if ($userDate == $date) {
                 return false;
             }
         }
 
-        return $this->days()->save($day);
+        return Day::create([
+            'user_id' => $this->id,
+            'date' => $date
+        ]);
     }
 }

@@ -16,7 +16,7 @@ class CreateDaysTable extends Migration
         Schema::create('days', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
-            $table->unsignedInteger('user_id')->index();
+            $table->unsignedInteger('user_id')->index()->default(null);
             $table->boolean('editable')->default(0);
             $table->integer('good_food_count')->default(0);
             $table->integer('bad_food_count')->default(0);

@@ -15,7 +15,7 @@ class ThreadTest extends TestCase
 		{
 			parent::setUp();
 			$this->signIn();
-			$this->day = create('App\Day', ['user_id' => auth()->id()]);
+			$this->day = create('App\Day', ['user_id' => auth()->id(), 'date' => '2017-01-23']);
 		}
 
     /** @test */
@@ -37,11 +37,11 @@ class ThreadTest extends TestCase
 
     		$sameDateDay = create('App\Day', ['date' => $this->day->date]);
 
-    		$newDateDay = create('App\Day', ['date' => \Carbon\Carbon::now()->addDay()]);
+    		$newDateDay = create('App\Day', ['date' => '2017-04-11']);
 
-    		auth()->user()->addDay($sameDateDay);
+    		auth()->user()->addDay($sameDateDay->date);
 
-    		auth()->user()->addDay($newDateDay);
+    		auth()->user()->addDay($newDateDay->date);
 
     		$this->assertContains($this->day->id, auth()->user()->days()->pluck('id'));
 

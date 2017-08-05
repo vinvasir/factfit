@@ -35,16 +35,17 @@ class ManageDaysTest extends TestCase
     }
 
     /** @test */
-    function an_authenticated_user_can_create_new_forum_days()
+    function an_authenticated_user_can_create_new_days()
     {
     		// Given we have an authenticated user
     		$this->signIn();
     		// When we hit the endpoint to create a new day
     		$day = make('App\Day');
-    		$response = $this->post('/days', $day->toArray());
+
+    		$response = $this->post('/app/days', $day->toArray());
     		// Then when we visit the day page
-    		$this->get($response->headers->get('Location'))
-    		      ->assertSee($day->date)
-    			  ->assertSee($day->food_goal_progress);
+    		$this->assertDataBaseHas('days', ['user_id' => auth()->id(), 'date' => $day->date])
+                  ->get($response->headers->get('Location'))
+    		      ->assertSee($day->date);
     }
 }
