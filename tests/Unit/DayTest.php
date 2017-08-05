@@ -47,6 +47,6 @@ class ThreadTest extends TestCase
 
     		$this->assertContains($newDateDay->id, auth()->user()->days()->pluck('id'));
 
-    		// !$this->refuteContains($sameDateDay->id, auth()->user()->days()->pluck('id'));
+    		$this->assertNotContains($sameDateDay->id, auth()->user()->days()->pluck('id'));
     }
 }
