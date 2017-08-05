@@ -14,7 +14,8 @@ class ThreadTest extends TestCase
 		public function setUp()
 		{
 			parent::setUp();
-			$this->day = factory('App\Day')->create();
+			$this->signIn();
+			$this->day = create('App\Day', ['user_id' => auth()->id()]);
 		}
 
     /** @test */
@@ -27,5 +28,19 @@ class ThreadTest extends TestCase
     		$this->day->setProgress();
     		
     		$this->assertEquals($this->day->food_goal_progress, $food_progress);
+    }
+
+    /** @test */
+    function a_user_can_only_have_one_day_record_per_real_world_date()
+    {
+    		$this->assertEquals(auth()->id(), $this->day->user_id);
+
+    		$sameDateDay = create('App\Day', ['date' => $this->day->date]);
+
+    		auth()->user()->addDay($sameDateDay);
+
+    		$this->assertContains($this->day, auth()->user()->days());
+
+    		!$this->assertContains($sameDateDay, auth()->user()->days());
     }
 }
