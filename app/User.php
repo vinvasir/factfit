@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function days()
     {
-        return $this->hasMany(Day::class);
+        return $this->hasMany(Day::class)->orderBy('date');
     }
 
     public function addDay($date)
