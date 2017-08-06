@@ -19,6 +19,18 @@
       			
       				<!--  Put content here -->
       				<p>Progress towards diet goal: {{ $day->food_goal_progress * 100 }}%</p>
+
+              @foreach($day->foods as $food)
+
+                <div class="well">
+                  <h4>{{ $food->name }}</h4>
+                  <h4>{{ $food->typeName() }}</h4>
+                  <p>{{ $food->mealName() }}</p>
+                  <p>{{ $food->processed ? 'Processed food' : 'Whole food' }}</p>
+                  <p>{{ $food->description}}</p>
+                </div>
+
+              @endforeach
       		</div>
       </div>
     </div>

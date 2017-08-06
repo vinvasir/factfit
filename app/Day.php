@@ -8,6 +8,8 @@ class Day extends Model
 {
 	protected $fillable = ['user_id', 'date'];
 
+    protected $with = ['foods'];
+
 	public function user()
 	{
 		return $this->belongsTo(User::class);
