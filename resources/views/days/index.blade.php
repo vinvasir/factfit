@@ -9,7 +9,7 @@
 			
 		@foreach($days as $day)
 
-			<h3>{{ $day->date }}</h3>
+			<a href="/app/days/{{ $day->id }}"><h3>{{ $day->date }}</h3></a>
 
 			<i>Diet goal {{ $day->food_goal_progress * 100 }}% complete</i>
 
