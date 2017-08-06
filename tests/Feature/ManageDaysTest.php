@@ -73,9 +73,9 @@ class ManageDaysTest extends TestCase
 
         $day = create('App\Day', ['user_id' => auth()->id()]);
 
-        $food = ['name' => 'Kale', 'description' => 'leafy goodness', 'type' => 0, 'processed' => 0];
+        $food = ['name' => 'Kale', 'description' => 'leafy goodness', 'type' => 0, 'processed' => 0, 'meal' => '2'];
 
-        $this->post('/app/days/$day->id/foods', $food);
+        $this->post('/app/days/' . $day->id . '/foods', $food);
         
         $food['day_id'] = $day->id;
 

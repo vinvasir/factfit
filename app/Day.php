@@ -26,4 +26,9 @@ class Day extends Model
 
 				$this->save();
     }
+
+    public function addFood($requestParams)
+    {
+    		$this->foods()->create($requestParams);
+    }
 }

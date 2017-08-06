@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Food;
+use App\Day;
 use Illuminate\Http\Request;
 
-class FoodController extends Controller
+class FoodsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,9 +34,16 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Day $day)
     {
-        //
+        $day->addFood([
+            'user_id' => $day->user->id,
+            'name' => request('name'),
+            'description' => request('description'),
+            'type' => request('type'),
+            'processed' => request('processed'),
+            'meal' => request('meal')
+        ]);
     }
 
     /**
