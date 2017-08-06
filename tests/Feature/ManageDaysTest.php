@@ -37,15 +37,32 @@ class ManageDaysTest extends TestCase
     /** @test */
     function an_authenticated_user_can_create_new_days()
     {
-    		// Given we have an authenticated user
-    		$this->signIn();
-    		// When we hit the endpoint to create a new day
-    		$day = make('App\Day');
+		// Given we have an authenticated user
+		$this->signIn();
+		// When we hit the endpoint to create a new day
+		$day = make('App\Day');
 
-    		$response = $this->post('/app/days', $day->toArray());
-    		// Then when we visit the day page
-    		$this->assertDataBaseHas('days', ['user_id' => auth()->id(), 'date' => $day->date])
-                  ->get($response->headers->get('Location'))
-    		      ->assertSee($day->date);
+		$response = $this->post('/app/days', $day->toArray());
+		// Then when we visit the day page
+		$this->assertDataBaseHas('days', ['user_id' => auth()->id(), 'date' => $day->date])
+              ->get($response->headers->get('Location'))
+		      ->assertSee($day->date);
+    }
+
+    /** @test */
+    function an_authenticated_user_can_see_their_days_and_progress()
+    {
+        $this->signIn();
+
+        $days = create('App\Day', [], 3);
+
+        foreach ($days as $day) {
+            $this->post('/app/days', $day->toArray());
+        }
+
+        $this->get('/app/days')
+             ->assertSee($days[0]->date)
+             ->assertSee($days[1]->date)
+             ->assertSee($days[2]->date);
     }
 }
