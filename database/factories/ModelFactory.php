@@ -37,3 +37,19 @@ $factory->define(App\Day::class, function (Faker\Generator $faker) {
         'bad_health_events_count' => rand(0, 10)
     ];
 });
+
+$factory->define(App\Day::class, function (Faker\Generator $faker) {
+    return [
+        'day_id' => function() {
+            return factory('App\Day')->create()->id;
+        },
+        'user_id' => function() {
+            return factory('App\User')->create()->id;
+        },
+        'name' => $faker->name,
+        'description' => $faker->paragraph,
+        'processed' => rand(0, 1),
+        'type' => rand(0, 5),
+        'meal' => rand(0, 3)
+    ];
+});
