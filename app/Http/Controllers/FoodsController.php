@@ -23,9 +23,9 @@ class FoodsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Day $day)
     {
-        //
+        return view('foods.create', compact('day'));
     }
 
     /**

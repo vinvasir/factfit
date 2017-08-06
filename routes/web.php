@@ -34,6 +34,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 		Route::get('/days/{day}', 'DaysController@show');
 
 		Route::post('/days/{day}/foods', 'FoodsController@store');
+
+		Route::get('/days/{day}/foods/create', 'FoodsController@create');
 });
 
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/
