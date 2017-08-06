@@ -22,6 +22,8 @@
                 				<button type="submit" class="btn btn-primary">Publish</button>
                 		</form>
 
+                        <a class="btn btn-danger" href="/app/days">Back</a>
+
                         @if (count($errors))
                             <ul class="alert alert-danger">
                             @foreach ($errors->all() as $error)

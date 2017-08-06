@@ -12,6 +12,8 @@
 
             <span class="level">
               <a class="btn btn-primary" href="/app/days/{{ $day->id }}/foods/create">Add a Food You Ate on this Day</a>
+
+              <a class="btn btn-danger" href="/app/days">Back</a>
             </span>
       		</div>
 

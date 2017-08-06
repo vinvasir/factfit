@@ -7,6 +7,8 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			
+		<a class="btn btn-primary" href="/app/days/create">Add a day</a>
+
 		@foreach($days as $day)
 
 			<a href="/app/days/{{ $day->id }}"><h3>{{ $day->date }}</h3></a>

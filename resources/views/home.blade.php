@@ -12,7 +12,7 @@
 
                     <h3>Successfully logged in!</h3>
 
-                    <p><a href="/app">Click here</a> to start recording your fitness activity</p>
+                    <p><a href="/app/days">Click here</a> to start recording your fitness activity</p>
 
                     @else
 
