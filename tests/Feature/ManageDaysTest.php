@@ -65,4 +65,20 @@ class ManageDaysTest extends TestCase
              ->assertSee($days[1]->date)
              ->assertSee($days[2]->date);;
     }
+
+    /** @test */
+    function an_authenticated_user_can_add_foods_to_their_days()
+    {
+        $this->signIn();
+
+        $day = create('App\Day', ['user_id' => auth()->id()]);
+
+        $food = ['name' => 'Kale', 'description' => 'leafy goodness', 'type' => 0, 'processed' => 0];
+
+        $this->post('/app/days/$day->id/foods', $food);
+        
+        $food['day_id'] = $day->id;
+
+        $this->assertDataBaseHas('foods', $food);
+    }
 }
