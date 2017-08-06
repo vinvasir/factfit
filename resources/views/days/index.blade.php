@@ -11,6 +11,8 @@
 
 			<h3>{{ $day->date }}</h3>
 
+			<i>Diet goal {{ $day->food_goal_progress * 100 }}% complete</i>
+
 		@endforeach
 
 		</div>

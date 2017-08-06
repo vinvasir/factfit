@@ -63,6 +63,7 @@ class ManageDaysTest extends TestCase
         $this->get('/app/days')
              ->assertSee($days[0]->date)
              ->assertSee($days[1]->date)
-             ->assertSee($days[2]->date);
+             ->assertSee($days[2]->date)
+             ->assertSee($days[0]->food_goal_progress);
     }
 }
