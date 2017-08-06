@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-		protected $fillable = ['type'];
+		protected $fillable = ['type', 'meal'];
 
 		protected $typeNames = [
 				'Leafy Greens',
@@ -26,6 +26,13 @@ class Food extends Model
 				'Cheese Substitutes'
 		];
 
+		protected $mealNames = [
+			'Breakfast',
+			'Lunch',
+			'Dinner',
+			'Snack'
+		];
+
     public function day()
     {
     		return $this->belongsTo(Day::class);
@@ -34,5 +41,10 @@ class Food extends Model
     public function typeName()
     {
     		return $this->typeNames[$this->type];
+    }
+
+    public function mealName()
+    {
+    		return $this->mealNames[$this->meal];
     }
 }

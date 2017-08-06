@@ -29,4 +29,24 @@ class FoodTest extends TestCase
 
 			$this->assertEquals($this->food->fresh()->typeName(), 'Refined Grains');
 	}
+
+	/** @test */
+	function it_offers_a_closed_selection_of_meals()
+	{
+			$this->food->update(['meal' => 0]);
+
+			$this->assertEquals($this->food->fresh()->mealName(), 'Breakfast');
+
+			$this->food->update(['meal' => 1]);
+
+			$this->assertEquals($this->food->fresh()->mealName(), 'Lunch');
+
+			$this->food->update(['meal' => 2]);
+
+			$this->assertEquals($this->food->fresh()->mealName(), 'Dinner');
+
+			$this->food->update(['meal' => 3]);
+
+			$this->assertEquals($this->food->fresh()->mealName(), 'Snack');							
+	}
 }
