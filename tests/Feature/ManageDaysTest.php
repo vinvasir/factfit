@@ -13,8 +13,8 @@ class ManageDaysTest extends TestCase
     /** @test */
     function guests_may_not_create_days()
     {
-     		$day = create('App\Day');
-    		$this->withExceptionHandling()
+ 		$day = create('App\Day');
+		$this->withExceptionHandling()
                  ->post('/app/days', $day->toArray())
                  ->assertRedirect('/login');   		
     }
@@ -63,7 +63,6 @@ class ManageDaysTest extends TestCase
         $this->get('/app/days')
              ->assertSee($days[0]->date)
              ->assertSee($days[1]->date)
-             ->assertSee($days[2]->date)
-             ->assertSee($days[0]->food_goal_progress);
+             ->assertSee($days[2]->date);;
     }
 }
