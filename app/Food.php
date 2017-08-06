@@ -8,7 +8,7 @@ class Food extends Model
 {
 		protected $fillable = ['user_id', 'name', 'processed', 'type', 'meal', 'description'];
 
-		protected $typeNames = [
+		public $typeNames = [
 				'Leafy Greens',
 				'Cruciferous Vegetables',
 				'Starchy Plants',
@@ -26,7 +26,7 @@ class Food extends Model
 				'Cheese Substitutes'
 		];
 
-		protected $mealNames = [
+		public $mealNames = [
 			'Breakfast',
 			'Lunch',
 			'Dinner',

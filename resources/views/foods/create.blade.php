@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Create an Entry for this Day</div>
+                <div class="panel-heading">Create a Food Entry for this Day</div>
 
                 <div class="panel-body">
                 		<form action="/app/days/{{ $day->id }}/foods" method="POST">
@@ -25,6 +25,37 @@
                                         {{ old('description ') }}
                                     </textarea>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="type">Choose a food type</label>
+                                    <select name="type" id="type" class="form-control" required>
+                                        <option value="">--Choose a food type--</option>
+                                        @foreach ($food->typeNames as $index => $typeName)
+                                            <option value="{{ $index }}"
+                                            {{ old('type') == $index ? 'selected' : ''}}>{{ $typeName}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="type">Which meal did you eat it in?</label>
+                                    <select name="meal" id="meal" class="form-control" required>
+                                        <option value="">--Choose a meal--</option>
+                                        @foreach ($food->mealNames as $index => $mealName)
+                                            <option value="{{ $index }}"
+                                            {{ old('meal') == $index ? 'selected' : ''}}>{{ $mealName}}</option>
+                                        @endforeach
+                                    </select>
+                                </div> 
+
+                                <div class="form-group">
+                                    <label for="processed">Is this a processed food?</label>
+                                    <select name="processed" id="processed" class="form-control" required>
+                                        <option value="">--Choose yes or no--</option>
+                                        <option value="1" {{ old('processed') == 1 ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ old('processed') == 0 ? 'selected' : '' }}>No</option>
+                                    </select>
+                                </div>                
 
                 				<button type="submit" class="btn btn-primary">Publish</button>
                 		</form>

@@ -25,7 +25,9 @@ class FoodsController extends Controller
      */
     public function create(Day $day)
     {
-        return view('foods.create', compact('day'));
+        $food = new Food();
+
+        return view('foods.create', compact('day', 'food'));
     }
 
     /**
@@ -44,6 +46,8 @@ class FoodsController extends Controller
             'processed' => request('processed'),
             'meal' => request('meal')
         ]);
+
+        return redirect('/app/days/' . $day->id);
     }
 
     /**
