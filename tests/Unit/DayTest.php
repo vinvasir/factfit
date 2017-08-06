@@ -5,7 +5,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ThreadTest extends TestCase
+class DayTest extends TestCase
 {
 	use DatabaseMigrations;
 
@@ -53,8 +53,8 @@ class ThreadTest extends TestCase
     /** @test */
     function it_has_foods()
     {
-        create('App\Food', ['day_id' => $this->day->id]);
+        create('App\Food', ['day_id' => $this->day->id], 4);
 
-        $this->assertEquals($this->day->foods->length, 4);
+        $this->assertEquals($this->day->foods->count(), 4);
     }
 }

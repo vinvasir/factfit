@@ -38,7 +38,7 @@ $factory->define(App\Day::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Day::class, function (Faker\Generator $faker) {
+$factory->define(App\Food::class, function (Faker\Generator $faker) {
     return [
         'day_id' => function() {
             return factory('App\Day')->create()->id;
