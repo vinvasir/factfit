@@ -38,6 +38,14 @@ class FoodsController extends Controller
      */
     public function store(Request $request, Day $day)
     {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'type' => 'required',
+            'processed' => 'required',
+            'meal' => 'required',
+        ]);
+
         $day->addFood([
             'user_id' => $day->user->id,
             'name' => request('name'),
