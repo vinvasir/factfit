@@ -49,4 +49,28 @@ class FoodTest extends TestCase
 
 			$this->assertEquals($this->food->fresh()->mealName(), 'Snack');							
 	}
+
+	/** @test */
+	function it_increments_its_days_good_fad_bad_food_counts()
+	{
+			$day = create('App\Day');
+
+			$initial_good_foods = $day->good_food_count;
+
+			$initial_bad_foods = $day->bad_food_count;
+
+			create('App\Food', ['type' => 0, 'day_id' => $day->id]);
+
+			$good_food_count = $initial_good_foods + 1;
+
+			// dd($good_food_count);
+
+			$this->assertEquals($day->fresh()->good_found_count, $good_food_count);
+
+			create('App\Food',  ['type' => 14, 'day_id' => $day->id]);
+
+			$bad_food_count = $initial_bad_foods + 1;
+
+			$this->assertEquals($day->fresh()->bad_food_count, $bad_food_count);
+	}
 }

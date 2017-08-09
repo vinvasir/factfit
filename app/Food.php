@@ -6,7 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-		protected $fillable = ['user_id', 'name', 'processed', 'type', 'meal', 'description'];
+		protected $fillable = ['user_id', 'day_id', 'name', 'processed', 'type', 'meal', 'description'];
+
+		protected static function boot()
+		{
+				parent::boot();
+
+				static::created(function($food) {
+						if ($food->type < 10) {
+							$food->day->good_food_count = $food->day->good_food_count + 1;
+						} else {
+							$food->day->bad_food_count = $food->day->bad_food_count + 1;
+						}
+
+						$food->day->save();
+						$food->day->setProgress();
+				});
+		}
 
 		public $typeNames = [
 				'Leafy Greens',

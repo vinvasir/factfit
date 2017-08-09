@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Day extends Model
 {
-	protected $fillable = ['user_id', 'date'];
+	protected $fillable = ['user_id', 'date', 'good_food_count', 'bad_food_count'];
 
     protected $with = ['foods'];
 
