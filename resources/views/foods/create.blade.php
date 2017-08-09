@@ -21,7 +21,7 @@
 
                                 <div class="form-group">
                                     <label for="description">Description:</label>
-                                    <textarea name="description" rows="3" class="form-control">
+                                    <textarea name="description" rows="3" class="form-control" required>
                                         {{ old('description ') }}
                                     </textarea>
                                 </div>
