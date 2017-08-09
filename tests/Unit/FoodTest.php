@@ -59,7 +59,7 @@ class FoodTest extends TestCase
 
 			$initial_bad_foods = $day->bad_food_count;
 
-			create('App\Food', ['type' => 0, 'day_id' => $day->id]);
+			create('App\Food', ['type' => 0, 'day_id' => $day->id, 'user_id' => auth()->id()]);
 
 			$good_food_count = $initial_good_foods + 1;
 
@@ -67,7 +67,7 @@ class FoodTest extends TestCase
 
 			$this->assertEquals($day->fresh()->good_found_count, $good_food_count);
 
-			create('App\Food',  ['type' => 14, 'day_id' => $day->id]);
+			create('App\Food',  ['type' => 14, 'day_id' => $day->id, 'user_id' => auth()->id()]);
 
 			$bad_food_count = $initial_bad_foods + 1;
 

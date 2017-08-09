@@ -57,4 +57,31 @@ class DayTest extends TestCase
 
         $this->assertEquals($this->day->foods->count(), 4);
     }
+
+    /** @test */
+    function it_requires_at_least_10_foods_and_80_percent_must_be_good()
+    {
+    		create('App\Food', ['day_id' => $this->day->id, 
+    												'user_id' => auth()->id(),
+    												'type' => 4]);
+
+    		create('App\Food', ['day_id' => $this->day->id, 
+    												'user_id' => auth()->id(),
+    												'type' => 8]);
+
+    		create('App\Food', ['day_id' => $this->day->id, 
+    												'user_id' => auth()->id(),
+    												'type' => 9]);
+
+    		create('App\Food', ['day_id' => $this->day->id, 
+    												'user_id' => auth()->id(),
+    												'type' => 11]);
+
+    		$food_goal_progress = ($this->day->fresh()->good_food_count - $this->day->fresh()->bad_food_count) / 10;
+
+   			// dd($food_goal_progress . " " . $this->day->fresh()->food_goal_progress);
+
+    		// formula is net good foods / 10 > 0.80
+    		$this->assertEquals($this->day->fresh()->food_goal_progress, $food_goal_progress);																	    		
+    }
 }
