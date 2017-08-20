@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Backpack\Base\app\Notifications\ResetPasswordNotification as ResetPasswordNotification;
 
+use App\Notifications\MissedDay;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -60,5 +62,18 @@ class User extends Authenticatable
             'user_id' => $this->id,
             'date' => $date
         ]);
+    }
+
+    public function checkActivityFor($date)
+    {
+        if ($this->days()->where(['date' => $date])->count() == 0) {
+            $n = new MissedDay();
+
+            $this->notify($n);
+
+            return $n;
+        } else {
+            return "You were active on " . $date;
+        }
     }
 }
