@@ -67,7 +67,7 @@ class User extends Authenticatable
     public function checkActivityFor($date)
     {
         if ($this->days()->where(['date' => $date])->count() == 0) {
-            $n = new MissedDay();
+            $n = new MissedDay($date, $this);
 
             $this->notify($n);
 

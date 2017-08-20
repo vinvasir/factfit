@@ -11,12 +11,16 @@ class MissedDay extends Notification
 {
     use Queueable;
 
+    protected $date;
+
+    protected $user;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($date, $user)
     {
         //
     }
