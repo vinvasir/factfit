@@ -22,7 +22,8 @@ class MissedDay extends Notification
      */
     public function __construct($date, $user)
     {
-        //
+        $this->date = $date;
+        $this->user = $user;
     }
 
     /**
@@ -33,7 +34,7 @@ class MissedDay extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -45,8 +46,8 @@ class MissedDay extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('You missed a day on Factfit') 
+                    ->action('Create ', url('/app/days/create'))
                     ->line('Thank you for using our application!');
     }
 
