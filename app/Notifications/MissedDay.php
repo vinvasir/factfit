@@ -20,10 +20,9 @@ class MissedDay extends Notification
      *
      * @return void
      */
-    public function __construct($date, $user)
+    public function __construct($date)
     {
         $this->date = $date;
-        $this->user = $user;
     }
 
     /**
@@ -47,8 +46,17 @@ class MissedDay extends Notification
     {
         return (new MailMessage)
                     ->line('You missed a day on Factfit') 
-                    ->action('Create ', url('/app/days/create'))
+                    ->action('Record activity for ' . $this->date, url('/app/days/create'))
                     ->line('Thank you for using our application!');
+    }
+
+    /**
+     * Get the notifiable entity that the notfication belongs to.
+     */
+    
+    public function notifiable()
+    {
+        return $this->morphTo();
     }
 
     /**
