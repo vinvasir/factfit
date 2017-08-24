@@ -45,15 +45,16 @@ class MissedDay extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject('You missed a day on Factfit!')
                     ->line('You missed a day on Factfit') 
                     ->action('Record activity for ' . $this->date, url('/app/days/create'))
-                    ->line('Thank you for using our application!');
+                    ->line('Thanks for using Factfit to track your health activity!');
     }
 
     /**
      * Get the notifiable entity that the notfication belongs to.
      */
-    
+
     public function notifiable()
     {
         return $this->morphTo();
