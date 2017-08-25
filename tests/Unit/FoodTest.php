@@ -54,7 +54,7 @@ class FoodTest extends TestCase
 	function it_increments_its_days_good_fad_bad_food_counts()
 	{
 			$day = create('App\Day');
-
+// dd($day);
 			$initial_good_foods = $day->good_food_count;
 
 			$initial_bad_foods = $day->bad_food_count;
@@ -62,10 +62,10 @@ class FoodTest extends TestCase
 			create('App\Food', ['type' => 0, 'day_id' => $day->id, 'user_id' => auth()->id()]);
 
 			$good_food_count = $initial_good_foods + 1;
-
-			// dd($good_food_count);
-
-			$this->assertEquals($day->fresh()->good_found_count, $good_food_count);
+// dd($day->foods);
+			// dd($day->fresh()->good_found_count);
+// eval(\Psy\sh());
+			$this->assertEquals($day->fresh()->good_food_count, $good_food_count);
 
 			create('App\Food',  ['type' => 14, 'day_id' => $day->id, 'user_id' => auth()->id()]);
 

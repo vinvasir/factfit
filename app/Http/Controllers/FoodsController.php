@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Food;
 use App\Day;
+use App\FoodTypes\FoodTypeFactory;
+
 use Illuminate\Http\Request;
 
 class FoodsController extends Controller
@@ -27,7 +29,9 @@ class FoodsController extends Controller
     {
         $food = new Food();
 
-        return view('foods.create', compact('day', 'food'));
+        $foodTypes = FoodTypeFactory::foodTypeNames();
+
+        return view('foods.create', compact('day', 'food', 'foodTypes'));
     }
 
     /**
@@ -41,7 +45,7 @@ class FoodsController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'description' => 'required',
-            'type' => 'required',
+            'type_name' => 'required',
             'processed' => 'required',
             'meal' => 'required',
         ]);
@@ -50,7 +54,7 @@ class FoodsController extends Controller
             'user_id' => $day->user->id,
             'name' => request('name'),
             'description' => request('description'),
-            'type' => request('type'),
+            'type_name' => request('type_name'),
             'processed' => request('processed'),
             'meal' => request('meal')
         ]);

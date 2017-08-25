@@ -4,7 +4,7 @@ namespace App\Foodtypes;
 
 class FoodTypeFactory {
 
-	private static $legacyClassArray = [
+	private static $classNamesByIndex = [
 		'Leafy Greens',
 		'Cruciferous Vegetables',
 		'Starchy Plants',
@@ -40,13 +40,18 @@ class FoodTypeFactory {
 		'Cheese Substitutes' => 'CheeseSub'
 	];
 
-	public static function make($typeName) {
-		return new self::$classNames[$typeName];
+	public static function make($typeName, $foodModel) {
+		return new self::$classNames[$typeName]($foodModel);
 	}
 
-	public static function makeById($id) {
-		$typeName = self::$legacyClassArray[$id];
+	public static function makeById($id, $foodModel) {
+		$typeName = self::$classNamesByIndex[$id];
 
-		return static::make($typeName);
+		return static::make($typeName, $foodModel);
+	}
+
+	public static function foodTypeNames()
+	{
+			return array_keys(self::$classNames);
 	}
 }

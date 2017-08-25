@@ -28,11 +28,11 @@
 
                                 <div class="form-group">
                                     <label for="type">Choose a food type</label>
-                                    <select name="type" id="type" class="form-control" required>
+                                    <select name="type_name" id="type" class="form-control" required>
                                         <option value="">--Choose a food type--</option>
-                                        @foreach ($food->typeNames as $index => $typeName)
-                                            <option value="{{ $index }}"
-                                            {{ old('type') == $index ? 'selected' : ''}}>{{ $typeName}}</option>
+                                        @foreach ($foodTypes as $type)
+                                            <option value="{{ $type }}"
+                                            {{ old('type') == $type ? 'selected' : ''}}>{{ $type}}</option>
                                         @endforeach
                                     </select>
                                 </div>

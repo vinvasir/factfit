@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTypeIdAndTypeName extends Migration
+class ChangeTypeToNullable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddTypeIdAndTypeName extends Migration
     public function up()
     {
         Schema::table('foods', function (Blueprint $table) {
-            $table->integer('type_id')->nullable();
-            $table->string('type_name')->nullable();
+            $table->integer('type')->nullable()->change();
         });
     }
 
@@ -27,8 +26,7 @@ class AddTypeIdAndTypeName extends Migration
     public function down()
     {
         Schema::table('foods', function (Blueprint $table) {
-            $table->dropColumn('type_id');
-            $table->dropColumn('type_name');
+            //
         });
     }
 }

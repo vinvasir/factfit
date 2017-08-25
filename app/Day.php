@@ -25,7 +25,7 @@ class Day extends Model
 		$food_progress = ($this->good_food_count - $this->bad_food_count) / 10;
         
 		$this->food_goal_progress = $food_progress;
-
+// dd($this->good_food_count);
 		$this->save();
     }
 

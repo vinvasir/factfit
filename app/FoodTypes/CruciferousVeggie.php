@@ -2,7 +2,12 @@
 
 namespace App\FoodTypes;
 
-class CruciferousVeggie implements FoodType {
+class CruciferousVeggie extends FoodType implements FoodTypeInterface {
+	public function __construct($foodModel)
+	{
+			$this->foodModel = $foodModel;
+	}
+
 	public function typeName() 
     {
         return 'Cruciferous Vegetables';
