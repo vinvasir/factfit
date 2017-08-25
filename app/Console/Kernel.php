@@ -26,6 +26,12 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('check:activity')
                  ->daily();
+
+        $schedule->call(function() {
+            $client = new \GuzzleHttp\Client();
+
+            $client->request('GET', 'https://www.anddit.com/hope-portal-api/api/v1/catalog');
+        })->hourly();
     }
 
     /**
