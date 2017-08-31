@@ -14,38 +14,11 @@ class Food extends Model
 		{
 				parent::boot();
 
-				// update the legacy code below to handle the new,
-				// polymorphic way of setting food type
 
-				// static::created(function($food) {
-				// 		if ($food->type < 10) {
-				// 			$food->day->good_food_count = $food->day->good_food_count + 1;
-				// 		} else {
-				// 			$food->day->bad_food_count = $food->day->bad_food_count + 1;
-				// 		}
-
-				// 		$food->day->save();
-				// 		$food->day->setProgress();
-				// });
+				static::created(function($food) {
+						FoodTypeFactory::make($food->type_name, $food)->updateCountsForDay();
+				});
 		}
-
-		// public $typeNames = [
-		// 		'Leafy Greens',
-		// 		'Cruciferous Vegetables',
-		// 		'Starchy Plants',
-		// 		'Colorful Starch',
-		// 		'Citrus Fruits',
-		// 		'Apples',
-		// 		'Berries',
-		// 		'Sweet Fruits',
-		// 		'Legumes',
-		// 		'Whole Grains',
-		// 		'Refined Grains',
-		// 		'Processed Candy',
-		// 		'Ice Cream',
-		// 		'Meat Substitutes',
-		// 		'Cheese Substitutes'
-		// ];
 
 		public $mealNames = [
 			'Breakfast',

@@ -23,25 +23,36 @@ class FoodTypeFactory {
 	];
 
 	private static $classNames = [
-		'Leafy Greens' => 'LeafyGreen',
-		'Cruciferous Vegetables' => 'CruciferousVeggie',
-		'Starchy Plants' => 'StarchyPlant',
-		'Colorful Starch' => 'ColorfulStarch',
-		'Citrus Fruits' => 'CitrusFruit',
-		'Apples' => 'Apple',
-		'Berries' => 'Berry',
-		'Sweet Fruits' => 'SweetFruit',
-		'Legumes' => 'Legume',
-		'Whole Grains' => 'WholeGrain',
-		'Refined Grains' => 'RefinedGrain',
-		'Processed Candy' => 'ProcessedCandy',
-		'Ice Cream' => 'IceCream',
-		'Meat Substitutes' => 'MeatSub',
-		'Cheese Substitutes' => 'CheeseSub'
+		'Leafy Greens' => '\LeafyGreen',
+		'Cruciferous Vegetables' => '\CruciferousVeggie',
+		'Starchy Plants' => '\StarchyPlant',
+		'Colorful Starch' => '\ColorfulStarch',
+		'Citrus Fruits' => '\CitrusFruit',
+		'Apples' => '\Apple',
+		'Berries' => '\Berry',
+		'Sweet Fruits' => '\SweetFruit',
+		'Legumes' => '\Legume',
+		'Whole Grains' => '\WholeGrain',
+		'Refined Grains' => '\RefinedGrain',
+		'Processed Candy' => '\ProcessedCandy',
+		'Ice Cream' => '\IceCream',
+		'Meat Substitutes' => '\MeatSub',
+		'Cheese Substitutes' => '\CheeseSub'
 	];
 
+	// this should save the class name after a model calls it
+	// the first time, so that future user-facing
+	// name changes don't break old data
 	public static function make($typeName, $foodModel) {
-		return new self::$classNames[$typeName]($foodModel);
+
+		if (! in_array($typeName, self::foodTypeNames())) return new $foodModel->type_name;
+
+		$foodModel->update(['type_name' => self::getClassName($typeName)]);
+// dd(new self::$classNames[$typeName]($foodModel));
+
+		$fullName = '\App\FoodTypes' . self::$classNames[$typeName];
+
+		return new $fullName($foodModel);
 	}
 
 	public static function makeById($id, $foodModel) {
@@ -53,5 +64,12 @@ class FoodTypeFactory {
 	public static function foodTypeNames()
 	{
 			return array_keys(self::$classNames);
+	}
+
+	public static function getClassName($typeName)
+	{
+			$fullName = "\App\Foodtypes" . self::$classNames[$typeName];
+
+			return $fullName;
 	}
 }

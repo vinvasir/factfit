@@ -51,7 +51,7 @@ class FoodTest extends TestCase
 	}
 
 	/** @test */
-	function it_increments_its_days_good_fad_bad_food_counts()
+	function it_increments_its_days_good_food_bad_food_counts()
 	{
 			$day = create('App\Day');
 // dd($day);
