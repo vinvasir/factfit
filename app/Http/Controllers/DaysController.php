@@ -50,7 +50,9 @@ class DaysController extends Controller
      */
     public function show(Day $day)
     {
-        return view('days.show', compact('day'));
+        $foods = $day->foods;
+
+        return view('days.show', compact('day', 'foods'));
     }
 
     /**

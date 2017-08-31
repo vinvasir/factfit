@@ -37,7 +37,7 @@ class Food extends Model
     		if ($this->type) {
     				return $this->typeNames[$this->type];
     		} else {
-    				return $this->type_name;
+    				return (new $this->type_name($this))->typeName();
     		}
     }
 

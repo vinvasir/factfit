@@ -22,7 +22,7 @@
       				<!--  Put content here -->
       				<p>Progress towards diet goal: {{ $day->food_goal_progress * 100 }}%</p>
 
-              @foreach($day->foods as $food)
+              @foreach($foods as $food)
 
                 <div class="well">
                   <h4>{{ $food->name }}</h4>
