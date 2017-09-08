@@ -10,5 +10,7 @@ class FoodType {
 		} else {
 			$this->foodModel->day->increment('bad_food_count');
 		}
+
+		$this->foodModel->day->setProgress();
 	}
 }

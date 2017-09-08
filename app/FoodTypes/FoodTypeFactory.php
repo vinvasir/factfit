@@ -45,7 +45,7 @@ class FoodTypeFactory {
 	// name changes don't break old data
 	public static function make($typeName, $foodModel) {
 
-		if (! in_array($typeName, self::foodTypeNames())) return new $foodModel->type_name($foodModel);
+		if (! array_key_exists($typeName, self::$classNames)) return new $foodModel->type_name($foodModel);
 
 		$foodModel->update(['type_name' => self::getClassName($typeName)]);
 // dd(new self::$classNames[$typeName]($foodModel));
