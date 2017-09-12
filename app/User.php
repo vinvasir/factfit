@@ -49,7 +49,11 @@ class User extends Authenticatable
 
     public function addDay($date)
     {
-        $userDates = $this->days()->pluck('date');
+        if ($date instanceof Day) {
+            $date = $date->date;
+        }
+        
+        $userDates = $this->days()->pluck('date')->all();
         
         foreach ($userDates as $userDate)
         {

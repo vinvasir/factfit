@@ -23,11 +23,11 @@ class DayTest extends TestCase
     {
 			$this->assertInstanceOf('App\Day', $this->day);
 
-			$food_progress = $this->day->good_food_count / ($this->day->good_food_count + $this->day->bad_food_count);
+			$food_progress = ($this->day->good_food_count - $this->day->bad_food_count) / 10;
 
 			$this->day->setProgress();
 			
-			$this->assertEquals($this->day->food_goal_progress, $food_progress);
+			$this->assertEquals($food_progress, $this->day->food_goal_progress);
     }
 
     /** @test */
@@ -35,19 +35,25 @@ class DayTest extends TestCase
     {
 			$this->assertEquals(auth()->id(), $this->day->user_id);
 
-			$sameDateDay = create('App\Day', ['date' => $this->day->date]);
+			$sameDate = $this->day->date;
 
-			$newDateDay = create('App\Day', ['date' => '2017-04-11']);
+			$newDate = \Carbon\Carbon::now()->addDay()->toDateString();
 
-			auth()->user()->addDay($sameDateDay->date);
+			auth()->user()->addDay($sameDate);
 
-			auth()->user()->addDay($newDateDay->date);
+			auth()->user()->addDay($newDate);
 
-			$this->assertContains($this->day->id, auth()->user()->days()->pluck('id'));
+            $user_day_ids = auth()->user()->fresh()->days()->pluck('id')->all();
 
-			$this->assertContains($newDateDay->id, auth()->user()->days()->pluck('id'));
+            $user_day_dates = auth()->user()->fresh()->days()->pluck('date')->all();
 
-			$this->assertNotContains($sameDateDay->id, auth()->user()->days()->pluck('id'));
+			$this->assertContains($this->day->id, $user_day_ids);
+// eval(\Psy\sh());
+			$this->assertContains($newDate, $user_day_dates);
+
+            $this->assertCount(2,  auth()->user()->fresh()->days);
+
+			$this->assertEquals(1, auth()->user()->fresh()->days()->where('date', $this->day->date)->count());
     }
 
     /** @test */
