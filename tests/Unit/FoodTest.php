@@ -21,11 +21,11 @@ class FoodTest extends TestCase
 	/** @test */
 	function it_selects_between_a_closed_set_of_food_types()
 	{
-			$this->food->update(['type' => 'Leafy Greens']);
+			$this->food->update(['type_name' => 'Leafy Greens']);
 
 			$this->assertEquals($this->food->fresh()->typeName(), '\App\Foodtypes\Leafy Greens');
 
-			$this->food->update(['type' => 10]);
+			$this->food->update(['type_name' => 10]);
 
 			$this->assertEquals($this->food->fresh()->typeName(), '\App\Foodtypes\Refined Grains');
 	}
@@ -59,7 +59,7 @@ class FoodTest extends TestCase
 
 			$initial_bad_foods = $day->bad_food_count;
 
-			create('App\Food', ['type_name' => 'Leafy Greens', 'day_id' => $day->id, 'user_id' => auth()->id()]);
+			create('App\Food', ['type_name' => '\App\FoodTypes\LeafyGreen', 'day_id' => $day->id, 'user_id' => auth()->id()]);
 
 			$good_food_count = $initial_good_foods + 1;
 // dd($day->foods);
@@ -67,7 +67,7 @@ class FoodTest extends TestCase
 // eval(\Psy\sh());
 			$this->assertEquals($day->fresh()->good_food_count, $good_food_count);
 
-			create('App\Food',  ['type_name' => 'Ice Cream', 'day_id' => $day->id, 'user_id' => auth()->id()]);
+			create('App\Food',  ['type_name' => '\App\FoodTypes\IceCream', 'day_id' => $day->id, 'user_id' => auth()->id()]);
 
 			$bad_food_count = $initial_bad_foods + 1;
 

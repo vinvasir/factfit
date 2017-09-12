@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Foodtypes;
+namespace App\FoodTypes;
 
 class FoodTypeFactory {
 
