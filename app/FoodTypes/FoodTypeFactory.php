@@ -4,7 +4,7 @@ namespace App\Foodtypes;
 
 class FoodTypeFactory {
 
-	private static $classNamesByIndex = [
+	public static $classNamesByIndex = [
 		'Leafy Greens',
 		'Cruciferous Vegetables',
 		'Starchy Plants',
@@ -22,7 +22,7 @@ class FoodTypeFactory {
 		'Cheese Substitutes'
 	];
 
-	private static $classNames = [
+	public static $classNames = [
 		'Leafy Greens' => '\LeafyGreen',
 		'Cruciferous Vegetables' => '\CruciferousVeggie',
 		'Starchy Plants' => '\StarchyPlant',

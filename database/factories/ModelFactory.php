@@ -49,7 +49,7 @@ $factory->define(App\Food::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'description' => $faker->paragraph,
         'processed' => rand(0, 1),
-        'type' => rand(0, 5),
+        'type_name' => \App\Foodtypes\FoodTypeFactory::$classNamesByIndex[rand(0, 14)],
         'meal' => rand(0, 3)
     ];
 });
