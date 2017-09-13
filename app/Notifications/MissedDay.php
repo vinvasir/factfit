@@ -22,7 +22,7 @@ class MissedDay extends Notification
      */
     public function __construct($date)
     {
-        $this->date = $date;
+        $this->date = $date->format('D. M d, Y');
     }
 
     /**
