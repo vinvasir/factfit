@@ -34,7 +34,7 @@ class Food extends Model
 
     public function typeName()
     {
-    		if ($this->type) {
+    		if ($this->type || $this->type === 0) {
     				return FoodTypeFactory::makeById($this->type, $this)->typeName();
     		} else {
     				return (new $this->type_name($this))->typeName();

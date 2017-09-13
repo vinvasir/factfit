@@ -31,6 +31,16 @@ class FoodTest extends TestCase
 	}
 
 	/** @test */
+	function it_can_display_the_food_type_even_when_the_value_is_zero()
+	{	
+			$this->food->update(['type' => 0, 'type_name' => null]);
+
+			// dd($this->food);
+
+			$this->assertEquals('Leafy Green', $this->food->fresh()->typeName());
+	}
+
+	/** @test */
 	function it_offers_a_closed_selection_of_meals()
 	{
 			$this->food->update(['meal' => 0]);
