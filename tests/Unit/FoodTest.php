@@ -21,13 +21,13 @@ class FoodTest extends TestCase
 	/** @test */
 	function it_selects_between_a_closed_set_of_food_types()
 	{
-			$this->food->update(['type_name' => 'Leafy Greens']);
+			$this->food->update(['type_name' => '\App\FoodTypes\LeafyGreen']);
 
-			$this->assertEquals($this->food->fresh()->typeName(), '\App\Foodtypes\Leafy Greens');
+			$this->assertEquals($this->food->fresh()->typeName(), 'Leafy Green');
 
-			$this->food->update(['type_name' => 10]);
+			$this->food->update(['type' => 10]);
 
-			$this->assertEquals($this->food->fresh()->typeName(), '\App\Foodtypes\Refined Grains');
+			$this->assertEquals($this->food->fresh()->typeName(), 'Refined Grains');
 	}
 
 	/** @test */
