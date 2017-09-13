@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@nfact-tracker.life'),
+        'name' => env('MAIL_FROM_NAME', "Vinnie and Jenny's Nutrition Facts Tracker"),
     ],
 
     /*
