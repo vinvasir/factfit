@@ -45,10 +45,10 @@ class MissedDay extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('You missed a day on Factfit!')
-                    ->line('You missed a day on Factfit') 
+                    ->subject('You missed a day on Nutrition Facts Tracker!')
+                    ->line('You missed a day on Nutrition Facts Tracker') 
                     ->action('Record activity for ' . $this->date, url('/app/days/create'))
-                    ->line('Thanks for using Factfit to track your health activity!');
+                    ->line('Thanks for using Nutrition Facts Tracker to track your health activity!');
     }
 
     /**
