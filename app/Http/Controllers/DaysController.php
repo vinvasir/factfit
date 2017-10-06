@@ -37,7 +37,8 @@ class DaysController extends Controller
      */
     public function store(Request $request)
     {
-        auth()->user()->addDay(request('date', 'weight'));
+
+        auth()->user()->addDay(request('date'), request('weight'));
 
         return redirect('/app/days');
     }

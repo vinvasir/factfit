@@ -11,13 +11,17 @@
                 		<form action="/app/days" method="POST">
                 				{{ csrf_field() }}
 
-                                <div class="form-group">
-
                 				<div class="form-group">
-                						<label for="date">Date:</label>
-                						<input type="date" name="date" id="date" class="form-control"
-                                        value="{{ old('date') }}" required>
+            						<label for="date">Date:</label>
+            						<input type="date" name="date" id="date" class="form-control"
+                                    value="{{ old('date') }}" required>
                 				</div>
+
+                                <div class="form-group">
+                                    <label for="weight">Your Weight This Day:</label>
+                                    <input type="text" name="weight" id="weight" class="form-control"
+                                           value="{{ old('weight') }}" required>
+                                </div>
 
                 				<button type="submit" class="btn btn-primary">Publish</button>
                 		</form>
