@@ -30,6 +30,7 @@ $factory->define(App\Day::class, function (Faker\Generator $faker) {
         	return factory('App\User')->create()->id;
         },
         'editable' => rand(0, 1),
+        'weight' => (rand(10000, 20100)/100),
         'good_food_count' => rand(0, 15),
         'bad_food_count' => rand(0, 15),
         'exercise_minutes_count' => rand(0, 120),

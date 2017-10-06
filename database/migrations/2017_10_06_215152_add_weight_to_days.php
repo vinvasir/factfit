@@ -14,7 +14,7 @@ class AddWeightToDays extends Migration
     public function up()
     {
         Schema::table('days', function (Blueprint $table) {
-            $table->decimal('weight', 3, 2);
+            $table->decimal('weight', 5, 2);
         });
     }
 

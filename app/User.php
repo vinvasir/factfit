@@ -47,7 +47,7 @@ class User extends Authenticatable
         return $this->hasMany(Day::class)->orderBy('date');
     }
 
-    public function addDay($date)
+    public function addDay($date, $weight = 999.99)
     {
         if ($date instanceof Day) {
             $date = $date->date;
@@ -64,7 +64,8 @@ class User extends Authenticatable
 
         return Day::create([
             'user_id' => $this->id,
-            'date' => $date
+            'date' => $date,
+            'weight' => $weight
         ]);
     }
 
