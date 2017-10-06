@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class DayTest extends TestCase
 {
-	use DatabaseMigrations;
+	use DatabaseTransactions;
 
   protected $day;
 

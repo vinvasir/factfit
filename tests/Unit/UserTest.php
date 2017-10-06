@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserTest extends TestCase
 {
-	use DatabaseMigrations;
+	use DatabaseTransactions;
 
 	public function setUp()
 	{

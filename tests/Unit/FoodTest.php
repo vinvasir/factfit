@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class FoodTest extends TestCase
 {
-	use DatabaseMigrations;
+	use DatabaseTransactions;
 
   protected $food;
 
