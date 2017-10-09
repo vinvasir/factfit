@@ -55,7 +55,8 @@ class Day extends Model implements FCEvent
 
   public function getEnd()
   {
-    return Carbon::midnight();
+    $c = new Carbon($this->date);
+    return $c->addDay()->subSecond()->toDateTimeString();
   }
 
   protected function getCarbonizedDate()
