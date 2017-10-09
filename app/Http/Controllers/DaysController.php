@@ -16,7 +16,11 @@ class DaysController extends Controller
     {
         $days = auth()->user()->days;
 
-        $calendar = \Calendar::addEvents($days);
+        $calendar = \Calendar::setCallbacks([
+            'dayClick' => 'function(calEvent, jsEvent, view) {
+                console.log(calEvent.format());
+            }',
+        ])->addEvents($days);
 
         // dd($calendar->script());
 
