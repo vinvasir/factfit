@@ -18,7 +18,9 @@ class DaysController extends Controller
 
         $calendar = \Calendar::setCallbacks([
             'dayClick' => 'function(calEvent, jsEvent, view) {
-                console.log(calEvent.format());
+                var newDate = calEvent.format();
+                console.log(newDate);
+                window.location.href = "/app/days/create?date=" + newDate;
             }',
         ])->addEvents($days);
 
@@ -32,9 +34,11 @@ class DaysController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('days.create');
+        $newDate = $request->query('date') ? $request->query('date') : \Carbon\Carbon::now()->toDateString();
+
+        return view('days.create', compact('newDate'));
     }
 
     /**

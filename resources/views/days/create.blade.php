@@ -14,7 +14,7 @@
                 				<div class="form-group">
             						<label for="date">Date:</label>
             						<input type="date" name="date" id="date" class="form-control"
-                                    value="{{ old('date') }}" required>
+                                    value="{{ old('date') ? old('date') : $newDate }}" required>
                 				</div>
 
                                 <div class="form-group">
