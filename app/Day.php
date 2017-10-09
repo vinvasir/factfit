@@ -55,6 +55,9 @@ class Day extends Model implements FCEvent
 
   public function getEnd()
   {
+    // use a different Carbon instance for this method
+    // because addDay() mutates the Carbon instance
+    // in-place
     $c = new Carbon($this->date);
     return $c->addDay()->subSecond()->toDateTimeString();
   }
