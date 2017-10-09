@@ -38,6 +38,12 @@ class Day extends Model implements FCEvent
     $this->foods()->create($requestParams);
   }
 
+
+  public function path()
+  {
+    return "/app/days/" . $this->id;
+  }
+
   public function getTitle()
   {
     return $this->getCarbonizedDate()->toFormattedDateString();
@@ -62,6 +68,19 @@ class Day extends Model implements FCEvent
     return $c->addDay()->subSecond();
   }
 
+  /**
+     * Optional FullCalendar.io settings for this event
+     *
+     * @return array
+     */
+  public function getEventOptions()
+  {
+      return [
+          'url' => $this->path(),
+    //etc
+      ];
+  }
+
   protected function getCarbonizedDate()
   {
     if (!$this->carbonizedDate && $this->date) {
@@ -69,5 +88,5 @@ class Day extends Model implements FCEvent
     }
 
     return $this->carbonizedDate;
-  }
+  } 
 }
