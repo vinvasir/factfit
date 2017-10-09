@@ -50,7 +50,7 @@ class Day extends Model implements FCEvent
 
   public function getStart()
   {
-    return $this->getCarbonizedDate()->toDateTimeString();
+    return $this->getCarbonizedDate();
   }
 
   public function getEnd()
@@ -59,7 +59,7 @@ class Day extends Model implements FCEvent
     // because addDay() mutates the Carbon instance
     // in-place
     $c = new Carbon($this->date);
-    return $c->addDay()->subSecond()->toDateTimeString();
+    return $c->addDay()->subSecond();
   }
 
   protected function getCarbonizedDate()

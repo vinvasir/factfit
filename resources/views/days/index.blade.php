@@ -9,6 +9,8 @@
 			
 		<a class="btn btn-primary" href="/app/days/create">Add a day</a>
 
+		{!! $calendar->calendar() !!}
+
 		@foreach($days as $day)
 
 			<a href="/app/days/{{ $day->id }}"><h3>{{ $day->date }}</h3></a>
@@ -17,6 +19,9 @@
 
 		@endforeach
 
+    {!! $calendar->script() !!}
+
+
 		</div>
 
 	</div>
@@ -24,3 +29,4 @@
 </div>
 
 @endsection
+

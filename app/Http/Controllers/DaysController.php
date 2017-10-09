@@ -16,7 +16,11 @@ class DaysController extends Controller
     {
         $days = auth()->user()->days;
 
-        return view('days.index', compact('days'));
+        $calendar = \Calendar::addEvents($days);
+
+        // dd($calendar->script());
+
+        return view('days.index', compact('days', 'calendar'));
     }
 
     /**
