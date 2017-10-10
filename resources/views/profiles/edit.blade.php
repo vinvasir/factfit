@@ -24,11 +24,11 @@
                     <label for="public">Should your profile be public?</label>
                     <select name="settings[privacy][public]" id="public" class="form-control" required>
                             <option value="">--Choose yes or no--</option>
-                            <option value="true" {{ $user->settings['privacy']['public'] == 'true' ? 'selected' : ''}}>
+                            <option value="true" {{ $user->settings['privacy']['public'] === true ? 'selected' : ''}}>
                               Yes
                             </option>
 
-                            <option value="false" {{ $user->settings['privacy']['public'] == 'false' ? 'selected' : ''}}>
+                            <option value="false" {{ $user->settings['privacy']['public'] === false ? 'selected' : ''}}>
                               No 
                             </option>                        
                     </select>

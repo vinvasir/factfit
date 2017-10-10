@@ -21,10 +21,8 @@ class Settings {
 		} else {
 			$fullSettings = $sanitizedSettings;
 		}
-// eval(\Psy\sh());
-// dd($fullSettings);
+
 		if (is_array($fullSettings['privacy']['public'])) {
-			// dd($fullSettings['privacy']);
 			$fullSettings['privacy']['public'] = array_pop($fullSettings['privacy']['public']);
 		}
 
