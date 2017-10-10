@@ -46,7 +46,10 @@ class Day extends Model implements FCEvent
 
   public function getTitle()
   {
-    return $this->getCarbonizedDate()->toFormattedDateString();
+    $dateLine = $this->getCarbonizedDate()->toFormattedDateString();
+    $progressLine = ($this->food_goal_progress * 100) . "% of diet goal";
+    $weightLine = $this->weight . " lb";
+    return $dateLine . "\n" . $progressLine . "\n" . $weightLine;
   }
 
    public function isAllDay() 
