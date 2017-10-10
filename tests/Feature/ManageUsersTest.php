@@ -49,6 +49,25 @@ class ManageUsersTest extends TestCase
   }
 
   /** @test */
+  function an_authenticated_user_may_toggle_the_public_setting()
+  {
+    $this->signIn();
+
+    $this->post('/app/users/my-settings', ['settings' => $this->settings]);
+          
+    $this->assertEquals($this->settings, auth()->user()->fresh()->settings);
+
+    $newSettings = ['privacy' => ['public' => true]];
+
+    $this->post('/app/users/my-settings', ['settings' => $newSettings]);
+
+    $expectedSettings = $this->settings;
+    $expectedSettings['privacy']['public'] = true;
+
+    $this->assertEquals($expectedSettings, auth()->user()->fresh()->settings);
+  }  
+
+  /** @test */
   function regular_users_may_not_update_other_users_settings()
   {
   	$this->signIn();

@@ -38,8 +38,18 @@ class ProfilesController extends Controller
         if ($user->id !== auth()->id()) {
             return abort(401, "You are not authorized to edit that profile!");
         }
+// dd(request('settings'));
 
-    	$user->update(request('all'));
+        $serializableSettings = request('settings');
+        if ($serializableSettings['privacy']['public'] === 'true') {
+            $serializableSettings['privacy']['public'] = true;
+        } else {
+            $serializableSettings['privacy']['public'] = false;
+        }
+
+// dd($serializableSettings);
+
+    	$user->settingsManager()->merge($serializableSettings);
 
     	return back();
     }

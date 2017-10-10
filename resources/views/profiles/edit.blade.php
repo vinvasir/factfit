@@ -16,6 +16,29 @@
       		</div>
 
       		<div class="panel-body">
+
+            <form action="{{ route('update_profile', $user->id) }}" method="POST">
+                {{ csrf_field() }}
+
+                <div class="form-group">
+                    <label for="public">Should your profile be public?</label>
+                    <select name="settings[privacy][public]" id="public" class="form-control" required>
+                            <option value="">--Choose yes or no--</option>
+                            <option value="true" {{ $user->settings['privacy']['public'] == 'true' ? 'selected' : ''}}>
+                              Yes
+                            </option>
+
+                            <option value="false" {{ $user->settings['privacy']['public'] == 'false' ? 'selected' : ''}}>
+                              No 
+                            </option>                        
+                    </select>
+
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update Settings</button>        
+            </form>
+
           </div>
 
       </div>
