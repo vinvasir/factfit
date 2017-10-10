@@ -36,14 +36,14 @@
 
                 <div class="form-group">
                     <label for="showWeightTo">Who can view your weight?</label>
-                    <select name="settings[privacy][showWeightTo]" id="showWeightTo" class="form-control"
+                    <select name="settings[privacy][showWeightTo][]" id="showWeightTo" class="form-control"
                     multiple="multiple" required>
                         <option value="" disabled>--Choose all that apply--</option>
                         <option value="friends" {{ in_array('friends', $selectedSettings->showWeightTo()) ? 'selected' : ''}}>
                           Friends
                         </option>
 
-                        <option value="followedUsers" {{ in_array('followedUsers', $selectedSettings->showFoodProgressTo()) ? 'selected' : ''}}>
+                        <option value="followedUsers" {{ in_array('followedUsers', $selectedSettings->showWeightTo()) ? 'selected' : ''}}>
                           Followed Users
                         </option>                        
                     </select>

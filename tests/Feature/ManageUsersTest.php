@@ -65,7 +65,32 @@ class ManageUsersTest extends TestCase
     $expectedSettings['privacy']['public'] = true;
 
     $this->assertEquals($expectedSettings, auth()->user()->fresh()->settings);
-  }  
+  }
+
+  /** @test */
+  function do_not_duplicate_showWeightTo_or_showFoodProgresTo()
+  {
+    $this->signIn();
+
+    $this->post('/app/users/my-settings', ['settings' => $this->settings]);
+
+    $this->assertEquals($this->settings, auth()->user()->fresh()->settings);
+
+    $newSettings = ['privacy' => 
+      ['showWeightTo' => ['friends'], 'showFoodProgressTo' => ['followers', 'friends']
+    ]];
+
+    $this->post('/app/users/my-settings', ['settings' => $newSettings]);
+
+    $expectedSettings = $this->settings;
+    $expectedSettings['privacy']['showFoodProgressTo'] = ['followers', 'friends'];
+
+    $actualSettings = auth()->user()->fresh()->settings;
+// dd($expectedSettings);
+// dd($actualSettings);
+    $this->assertEquals(array_values($expectedSettings['privacy']['showWeightTo']), $actualSettings['privacy']['showWeightTo']);
+        $this->assertEquals(array_values($expectedSettings['privacy']['showFoodProgressTo']), $actualSettings['privacy']['showFoodProgressTo']);
+  }
 
   /** @test */
   function regular_users_may_not_update_other_users_settings()
