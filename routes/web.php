@@ -37,6 +37,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 
 		Route::get('/days/{day}/foods/create', 'FoodsController@create');
 
+		Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
+
 		Route::post('/users/my-settings', 'SettingsController@store');
 });
 
