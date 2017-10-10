@@ -16,7 +16,7 @@ class Settings {
 	{
 		$sanitizedSettings = array_only($attributes, $this->allowed);
 
-		$this->user->settings = $sanitizedSettings;
+		$this->user->settings = array_merge($this->user->settings, $sanitizedSettings);
 		return $this->user->save();
 	}
 }
