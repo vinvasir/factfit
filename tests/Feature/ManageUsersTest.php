@@ -71,6 +71,6 @@ class ManageUsersTest extends TestCase
   			->post('/app/users/my-settings', ['settings' => $settings])
   			->assertRedirect('/login');
 
-  	$this->assertNotEqual($settings, $otherUser->fresh()->settings);  	
+  	$this->assertNotEquals($settings, $otherUser->fresh()->settings);  	
   }  
 }    
