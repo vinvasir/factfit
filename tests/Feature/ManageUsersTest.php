@@ -10,9 +10,28 @@ class ManageUsersTest extends TestCase
 {
   use DatabaseTransactions;
 
-    /** @test */
-    function a_user_may_update_their_settings()
-    {
+	public function setUp()
+	{
+		parent::setUp();
+		$this->signIn();
+	}
 
-    }
+
+  /** @test */
+  function an_authenticated_user_may_update_their_settings()
+  {
+  	$settings = ['privacy' => [
+  			'public' => false,
+  			'showWeightTo' => ['friends', 'followedUsers'],
+  			'showFoodProgressTo' => ['followers']
+  		],
+  		'appTheme' => [
+  			'backgroundColor' => 'dark'
+  		]
+  	];
+
+  	$this->post('/app/users/my-settings', $settings);
+
+  	$this->assertEqual($settings, auth()->user()->fresh()->settings);
+  }
 }    
