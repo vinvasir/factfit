@@ -107,5 +107,41 @@ class ManageUsersTest extends TestCase
     ];
 
     $this->assertEquals($expectedUserSettings, auth()->user()->fresh()->settings);
+  }
+
+  /** @test */
+  function an_authenticated_user_does_not_lose_settings_that_they_forget_to_specify()
+  {
+    $this->signIn();
+
+    auth()->user()->settings = ['privacy' => [
+        'public' => false,
+        'showWeightTo' => ['friends', 'followedUsers'],
+        'showFoodProgressTo' => ['followers']
+      ],
+      'appTheme' => [
+        'backgroundColor' => 'dark'
+      ]
+    ];
+
+    auth()->user()->save();
+
+    $changedSettings = [
+      'privacy' => ['showFoodProgressTo' => 'followedUsers']
+    ];
+
+    $this->post('/app/users/my-settings', ['settings' => $changedSettings]);
+
+    $expectedSettings =  ['privacy' => [
+          'public' => false,
+          'showWeightTo' => ['friends', 'followedUsers'],
+          'showFoodProgressTo' => ['followers', 'followedUsers']
+        ],
+        'appTheme' => [
+          'backgroundColor' => 'dark'
+        ]
+    ];
+
+    $this->assertEquals($expectedSettings, auth()->user()->fresh()->settings);
   }  
 }    
