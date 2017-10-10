@@ -17,6 +17,10 @@ class ProfilesController extends Controller
 
     public function show(User $user)
     {
+        if ($user->settings['privacy']['public'] != true) {
+            return redirect()->route('profile', auth()->id());
+        }
+
     	return view('profiles.show', compact('user'));
     }
 
