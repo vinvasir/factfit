@@ -32,6 +32,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Define attributes to serialize or
+     * deserialize in the database.
+     */
+    protected $casts = [
+        'settings' => 'json'
+    ];
+
+    /**
     * Send the password reset notification.
     *
     * @param  string  $token
