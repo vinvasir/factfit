@@ -37,6 +37,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 
 		Route::get('/days/{day}/foods/create', 'FoodsController@create');
 
+		Route::get('/profiles', 'ProfilesController@index')->name('profiles');
 		Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 		Route::get('/profiles/{user}/edit', 'ProfilesController@edit')->name('edit_profile');
 		Route::post('/profiles/{user}', 'ProfilesController@update')->name('update_profile');
