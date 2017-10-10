@@ -8,7 +8,7 @@
 
 
       		<div class="panel-heading">
-      			<h3>Profile for {{ $user->name }}</h3>
+      			<h3>Edit Profile for {{ $user->name }}</h3>
 
             <span class="level">
               <a class="btn btn-danger" href="/app/days">Back</a>
