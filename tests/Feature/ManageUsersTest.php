@@ -34,7 +34,7 @@ class ManageUsersTest extends TestCase
   function regular_users_may_not_update_other_users_settings()
   {
   	$this->signIn();
-  	
+
   	$otherUser = create('App\User');
 
   	$settings = ['privacy' => [
@@ -67,7 +67,9 @@ class ManageUsersTest extends TestCase
   		]
   	];
 
-  	$this->post('/app/users/my-settings', $settings);
+  	$this->withExceptionHandling()
+  			->post('/app/users/my-settings', $settings)
+  			->assertRedirect('/login');
 
   	$this->assertNotEqual($settings, $otherUser->fresh()->settings);  	
   }  
