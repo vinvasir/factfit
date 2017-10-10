@@ -26,8 +26,8 @@ class ManageUsersTest extends TestCase
   	];
 
   	$this->post('/app/users/my-settings', $settings);
-
-  	$this->assertEqual($settings, auth()->user()->fresh()->settings);
+  				
+		$this->assertEquals($settings, auth()->user()->fresh()->settings);
   }
 
   /** @test */
@@ -49,7 +49,7 @@ class ManageUsersTest extends TestCase
 
   	$this->post('/app/users/my-settings', $settings);
 
-  	$this->assertNotEqual($settings, $otherUser->fresh()->settings);  	
+  	$this->assertNotEquals($settings, $otherUser->fresh()->settings);  	
   }
 
   /** @test */
