@@ -10,24 +10,28 @@ class ManageUsersTest extends TestCase
 {
   use DatabaseTransactions;
 
+  public function setUp()
+  {
+    parent::setUp();
+    $this->settings = ['privacy' => [
+        'public' => false,
+        'showWeightTo' => ['friends', 'followedUsers'],
+        'showFoodProgressTo' => ['followers']
+      ],
+      'appTheme' => [
+        'backgroundColor' => 'dark'
+      ]
+    ];
+  }
+
   /** @test */
   function an_authenticated_user_may_update_their_settings()
   {
   	$this->signIn();
 
-  	$settings = ['privacy' => [
-  			'public' => false,
-  			'showWeightTo' => ['friends', 'followedUsers'],
-  			'showFoodProgressTo' => ['followers']
-  		],
-  		'appTheme' => [
-  			'backgroundColor' => 'dark'
-  		]
-  	];
-
-  	$this->post('/app/users/my-settings', ['settings' => $settings]);
+  	$this->post('/app/users/my-settings', ['settings' => $this->settings]);
   				
-		$this->assertEquals($settings, auth()->user()->fresh()->settings);
+		$this->assertEquals($this->settings, auth()->user()->fresh()->settings);
   }
 
   /** @test */
@@ -37,19 +41,10 @@ class ManageUsersTest extends TestCase
 
   	$otherUser = create('App\User');
 
-  	$settings = ['privacy' => [
-  			'public' => false,
-  			'showWeightTo' => ['friends', 'followedUsers'],
-  			'showFoodProgressTo' => ['followers']
-  		],
-  		'appTheme' => [
-  			'backgroundColor' => 'dark'
-  		]
-  	];
 
-  	$this->post('/app/users/my-settings', ['settings' => $settings]);
+  	$this->post('/app/users/my-settings', ['settings' => $this->settings]);
 
-  	$this->assertNotEquals($settings, $otherUser->fresh()->settings);  	
+  	$this->assertNotEquals($this->settings, $otherUser->fresh()->settings);  	
   }
 
   /** @test */
@@ -57,21 +52,11 @@ class ManageUsersTest extends TestCase
   {
   	$otherUser = create('App\User');
 
-  	$settings = ['privacy' => [
-  			'public' => false,
-  			'showWeightTo' => ['friends', 'followedUsers'],
-  			'showFoodProgressTo' => ['followers']
-  		],
-  		'appTheme' => [
-  			'backgroundColor' => 'dark'
-  		]
-  	];
-
   	$this->withExceptionHandling()
-  			->post('/app/users/my-settings', ['settings' => $settings])
+  			->post('/app/users/my-settings', ['settings' => $this->settings])
   			->assertRedirect('/login');
 
-  	$this->assertNotEquals($settings, $otherUser->fresh()->settings);  	
+  	$this->assertNotEquals($this->settings, $otherUser->fresh()->settings);  	
   }
 
   /** @test */
@@ -79,32 +64,19 @@ class ManageUsersTest extends TestCase
   {
     $this->signIn();
 
-    $settings = ['privacy' => [
-        'public' => false,
-        'showWeightTo' => ['friends', 'followedUsers'],
-        'showFoodProgressTo' => ['followers']
-      ],
-      'appTheme' => [
-        'backgroundColor' => 'dark'
-      ],
-      'permissions' => [
-        'admin' => true
-      ]
-    ];
+    $settings =  array_merge(
+      $this->settings,
+      ['permissions' => [
+          'admin' => true
+        ]
+      ] 
+    );
 
     $this->post('/app/users/my-settings', ['settings' => $settings]);
 
     $this->assertNotEquals($settings, auth()->user()->fresh()->settings);
 
-    $expectedUserSettings =['privacy' => [
-        'public' => false,
-        'showWeightTo' => ['friends', 'followedUsers'],
-        'showFoodProgressTo' => ['followers']
-      ],
-      'appTheme' => [
-        'backgroundColor' => 'dark'
-      ]
-    ];
+    $expectedUserSettings = $this->settings;
 
     $this->assertEquals($expectedUserSettings, auth()->user()->fresh()->settings);
   }
@@ -114,16 +86,7 @@ class ManageUsersTest extends TestCase
   {
     $this->signIn();
 
-    auth()->user()->settings = ['privacy' => [
-        'public' => false,
-        'showWeightTo' => ['friends', 'followedUsers'],
-        'showFoodProgressTo' => ['followers']
-      ],
-      'appTheme' => [
-        'backgroundColor' => 'dark'
-      ]
-    ];
-
+    auth()->user()->settings = $this->settings;
     auth()->user()->save();
 
     $changedSettings = [
@@ -132,15 +95,8 @@ class ManageUsersTest extends TestCase
 
     $this->post('/app/users/my-settings', ['settings' => $changedSettings]);
 
-    $expectedSettings =  ['privacy' => [
-          'public' => false,
-          'showWeightTo' => ['friends', 'followedUsers'],
-          'showFoodProgressTo' => ['followers', 'followedUsers']
-        ],
-        'appTheme' => [
-          'backgroundColor' => 'dark'
-        ]
-    ];
+    $expectedSettings =  $this->settings;
+    $expectedSettings['privacy']['showFoodProgressTo'] = ['followers', 'followedUsers'];
 
     $this->assertEquals($expectedSettings, auth()->user()->fresh()->settings);
   }  
