@@ -22,11 +22,19 @@ class ProfilesController extends Controller
 
     public function edit(User $user)
     {
+        if ($user !== auth()->user()) {
+            return redirect(route('profile', auth()->id()));
+        }
+
     	return view('profiles.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
     {
+        if ($user !== auth()->user()) {
+            return abort(401, "You are not authorized to edit that profile!");
+        }
+
     	$user->update(request('all'));
 
     	return back();

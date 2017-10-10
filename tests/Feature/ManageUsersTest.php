@@ -25,6 +25,20 @@ class ManageUsersTest extends TestCase
   }
 
   /** @test */
+  function users_may_not_edit_other_users_profiles()
+  {
+    $this->withExceptionHandling()->signIn();
+
+    $otherUser = create('App\User');
+
+    $this->get(route('edit_profile', $otherUser->id))
+         ->assertRedirect(route('profile', auth()->id()));
+
+    $this->post(route('update_profile', $otherUser->id, []))
+         ->assertStatus(401);
+  }
+
+  /** @test */
   function an_authenticated_user_may_update_their_settings()
   {
   	$this->signIn();
