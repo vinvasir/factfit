@@ -8,7 +8,7 @@ class SettingsController extends Controller
 {
     public function store(Request $request)
     {
-    	auth()->user()->settings()->merge(request('settings'));
+    	auth()->user()->settingsManager()->merge(request('settings'));
 
     	return back();
     }

@@ -51,7 +51,7 @@ class User extends Authenticatable
     }
 
 
-    public function settings()
+    public function settingsManager()
     {
         return new Settings($this);
     }

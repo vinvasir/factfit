@@ -16,7 +16,13 @@ class Settings {
 	{
 		$sanitizedSettings = array_only($attributes, $this->allowed);
 
-		$this->user->settings = array_merge($this->user->settings, $sanitizedSettings);
+		if ($this->user->settings) {
+			$fullSettings = array_merge_recursive($this->user->settings, $sanitizedSettings);
+		} else {
+			$fullSettings = $sanitizedSettings;
+		}
+		
+		$this->user->settings = $fullSettings;
 		return $this->user->save();
 	}
 }
