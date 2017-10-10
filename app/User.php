@@ -53,7 +53,7 @@ class User extends Authenticatable
 
     public function settingsManager()
     {
-        return new Settings($this);
+        return new SettingsManager($this);
     }
 
     public function days()

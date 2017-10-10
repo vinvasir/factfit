@@ -23,18 +23,31 @@
                 <div class="form-group">
                     <label for="public">Should your profile be public?</label>
                     <select name="settings[privacy][public]" id="public" class="form-control" required>
-                            <option value="">--Choose yes or no--</option>
-                            <option value="true" {{ $user->settings['privacy']['public'] === true ? 'selected' : ''}}>
-                              Yes
-                            </option>
+                        <option value="">--Choose yes or no--</option>
+                        <option value="true" {{ $user->settings['privacy']['public'] === true ? 'selected' : ''}}>
+                          Yes
+                        </option>
 
-                            <option value="false" {{ $user->settings['privacy']['public'] === false ? 'selected' : ''}}>
-                              No 
-                            </option>                        
+                        <option value="false" {{ $user->settings['privacy']['public'] === false ? 'selected' : ''}}>
+                          No 
+                        </option>                        
                     </select>
-
-
                 </div>
+
+                <div class="form-group">
+                    <label for="showWeightTo">Who can view your weight?</label>
+                    <select name="settings[privacy][showWeightTo]" id="showWeightTo" class="form-control"
+                    multiple="multiple" required>
+                        <option value="" disabled>--Choose all that apply--</option>
+                        <option value="friends" {{ in_array('friends', $user->settings['privacy']['showWeightTo']) ? 'selected' : ''}}>
+                          Friends
+                        </option>
+
+                        <option value="followedUsers" {{ in_array('followedUsers', $user->settings['privacy']['showWeightTo']) ? 'selected' : ''}}>
+                          Followed Users
+                        </option>                        
+                    </select>
+                </div>                
 
                 <button type="submit" class="btn btn-primary">Update Settings</button>        
             </form>

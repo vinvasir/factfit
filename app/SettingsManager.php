@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Settings {
+class SettingsManager {
 	protected $user;
 
 	protected $allowed = ['privacy', 'appTheme'];
