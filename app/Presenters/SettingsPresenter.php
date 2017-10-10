@@ -40,7 +40,7 @@ class SettingsPresenter {
 
 	protected function privacySettings()
 	{
-		if (array_key_exists('privacy', $this->settings)) {
+		if ($this->settings && array_key_exists('privacy', $this->settings)) {
 			return ($this->settings['privacy']);
 		} else {
 			return ['public' => false, 'showWeightTo' => ['friends'], 'showFoodProgressTo' => ['friends']];
@@ -49,7 +49,7 @@ class SettingsPresenter {
 
 	protected function themeSettings()
 	{
-		if (array_key_exists('appTheme', $this->settings)) {
+		if ($this->settings && array_key_exists('appTheme', $this->settings)) {
 			return $this->settings['appTheme'];
 		} else {
 			return ['backgroundColor' => 'dark'];

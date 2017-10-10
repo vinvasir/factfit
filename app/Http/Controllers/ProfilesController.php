@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Presenters\SettingsPresenter;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,9 @@ class ProfilesController extends Controller
             return redirect()->route('profile', auth()->id());
         }
 
-    	return view('profiles.edit', compact('user'));
+        $selectedSettings = new SettingsPresenter($user->settings);
+
+    	return view('profiles.edit', compact('user', 'selectedSettings'));
     }
 
     public function update(Request $request, User $user)

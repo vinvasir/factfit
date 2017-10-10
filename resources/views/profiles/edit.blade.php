@@ -39,11 +39,11 @@
                     <select name="settings[privacy][showWeightTo]" id="showWeightTo" class="form-control"
                     multiple="multiple" required>
                         <option value="" disabled>--Choose all that apply--</option>
-                        <option value="friends" {{ in_array('friends', $user->settings['privacy']['showWeightTo']) ? 'selected' : ''}}>
+                        <option value="friends" {{ in_array('friends', $selectedSettings->showWeightTo()) ? 'selected' : ''}}>
                           Friends
                         </option>
 
-                        <option value="followedUsers" {{ in_array('followedUsers', $user->settings['privacy']['showWeightTo']) ? 'selected' : ''}}>
+                        <option value="followedUsers" {{ in_array('followedUsers', $selectedSettings->showFoodProgressTo()) ? 'selected' : ''}}>
                           Followed Users
                         </option>                        
                     </select>
