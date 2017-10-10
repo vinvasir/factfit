@@ -25,7 +25,7 @@ class ManageUsersTest extends TestCase
   		]
   	];
 
-  	$this->post('/app/users/my-settings', $settings);
+  	$this->post('/app/users/my-settings', ['settings' => $settings]);
   				
 		$this->assertEquals($settings, auth()->user()->fresh()->settings);
   }
@@ -47,7 +47,7 @@ class ManageUsersTest extends TestCase
   		]
   	];
 
-  	$this->post('/app/users/my-settings', $settings);
+  	$this->post('/app/users/my-settings', ['settings' => $settings]);
 
   	$this->assertNotEquals($settings, $otherUser->fresh()->settings);  	
   }
@@ -68,7 +68,7 @@ class ManageUsersTest extends TestCase
   	];
 
   	$this->withExceptionHandling()
-  			->post('/app/users/my-settings', $settings)
+  			->post('/app/users/my-settings', ['settings' => $settings])
   			->assertRedirect('/login');
 
   	$this->assertNotEqual($settings, $otherUser->fresh()->settings);  	
