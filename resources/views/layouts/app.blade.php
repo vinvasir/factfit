@@ -64,14 +64,22 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="/app/profiles">
+                                            Feed
+                                        </a>
+
+                                        <a href="/app/days">
+                                            Manage Entries
+                                        </a>
+
+                                        <a href="{{ route('profile', Auth::user()->id) }}">
+                                            Your Progress Dashboard
+                                        </a>
+
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
-                                        </a>
-
-                                        <a href="{{ route('profile', Auth::user()->id) }}">
-                                            Your Profile
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
