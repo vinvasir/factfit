@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Presenters\SettingsPresenter;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProfilesController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
-		$users = DB::table('users')->where('settings->privacy->public', true)->get();
+        if ($request->query('friends') === '1') {
+            $users = auth()->user()->friends();
+        } else {
+            $users = User::where('settings->privacy->public', true)->get();
+        }
 
 		return view('profiles.index', compact('users'));
 	}
