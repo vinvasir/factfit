@@ -29,8 +29,34 @@ class FriendshipsTest extends TestCase
     'status' => 'pending'
     ]);
 
-// dd($this->otherUser->fresh()->friendshipRequesters->pluck('id'));
     $this->assertContains(auth()->id(), $this->otherUser->fresh()->friendshipRequesters->pluck('id'));
     $this->assertContains($this->otherUser->id, auth()->user()->fresh()->friendedUsers->pluck('id'));
+  }
+
+  /** @test */
+  function a_user_may_approve_incoming_friend_requests()
+  {
+    $this->signIn();
+
+    $friender = auth()->user();
+
+    $this->post('/app/friendships/' . $this->otherUser->id);
+
+    $this->signIn($this->otherUser);
+
+    $this->assertEquals(auth()->id(), $this->otherUser->id);
+
+    $this->assertContains($friender->id, auth()->user()->fresh()->friendshipRequesters->pluck('id'));
+
+    $this->post('/app/friendships/' . $friender->id . '/accept');
+
+    $this->assertDatabaseHas('friendships', [
+    'friender_id' => auth()->id(),
+    'friended_id' => $this->otherUser->id,
+    'status' => 'approved'
+    ]);
+
+    $this->assertContains($friender->id, auth()->user()->fresh()->friends->pluck('id'));
+    $this->assertContains(auth()->id(), $friender->fresh()->friends->pluck('id'));
   }
 }
