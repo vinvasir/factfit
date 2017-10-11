@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class ProfilesController extends Controller
 {
-		public function index()
-		{
-			$users = DB::table('users')->where('settings->privacy->public', true)->get();
+	public function index()
+	{
+		$users = DB::table('users')->where('settings->privacy->public', true)->get();
 
-			return view('profiles.index', compact('users'));
-		}
+		return view('profiles.index', compact('users'));
+	}
 
     public function show(User $user)
     {
