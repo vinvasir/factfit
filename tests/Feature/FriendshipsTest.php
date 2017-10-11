@@ -21,7 +21,7 @@ class FriendshipsTest extends TestCase
   {
     $this->signIn();
 
-    $this->post('/friend-requests/{$this->otherUser->id}')
+    $this->post('/app/friend-requests/{$this->otherUser->id}')
          ->assertDatabaseHas('friendships', [
           'friender_id' => auth()->id(),
           'friended_id' => $this->otherUser->id,
