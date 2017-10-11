@@ -13,6 +13,8 @@ class FriendshipsController extends Controller
     {
         try {
             $friendship = Friendship::create(['friender_id' => auth()->id(), 'friended_id' => $user->id]);
+
+            return back();
         } catch (QueryException $e) {
             return abort(401, "You already friended that user!");
         }
@@ -26,5 +28,7 @@ class FriendshipsController extends Controller
 
     	Friendship::where(['friender_id' => $user->id, 'friended_id' => auth()->id()])
     		->firstOrFail()->update(['status' => 'approved']);
+
+        return back();
     }
 }

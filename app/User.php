@@ -56,7 +56,7 @@ class User extends Authenticatable
         $approvedFrienders = $this->approvedFrienders()->latest()->get();
         $approvedFriendees = $this->approvedFriendees()->latest()->get();
 
-        return $approvedFrienders->push($approvedFriendees);
+        return $approvedFrienders->merge($approvedFriendees);
     }
 
     /**

@@ -55,9 +55,11 @@ class FriendshipsTest extends TestCase
     $this->assertEquals('approved', $friendship->status);
 
     $friendedsFriendIds = auth()->user()->fresh()->friends()->pluck('id');
-    $friendersFriendId = $friender->fresh()->friends()->toArray()[0][0]['id'];
+    $friendersFriendIds = $friender->fresh()->friends()->pluck('id');
+    $friendersFriendId = $friender->fresh()->friends()->toArray()[0]['id'];
 
     $this->assertContains($friender->id, $friendedsFriendIds);
     $this->assertEquals(auth()->user()->fresh()->id, $friendersFriendId);
+    $this->assertContains(auth()->user()->fresh()->id, $friendersFriendIds);
   }
 }
