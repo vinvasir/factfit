@@ -53,11 +53,11 @@ class FriendshipsTest extends TestCase
     $friendship = Friendship::where(['friender_id' => $friender->id, 'friended_id' => auth()->id()])->firstOrFail();
 
     $this->assertEquals('approved', $friendship->status);
-// dd(auth()->user()->fresh()->friends());
 
-    $friendedsFriendId = auth()->user()->fresh()->friends()->pluck('id');
+    $friendedsFriendIds = auth()->user()->fresh()->friends()->pluck('id');
     $friendersFriendId = $friender->fresh()->friends()->toArray()[0][0]['id'];
-    $this->assertContains($friender->id, auth()->user()->fresh()->friends()->pluck('id'));
+
+    $this->assertContains($friender->id, $friendedsFriendIds);
     $this->assertEquals(auth()->user()->fresh()->id, $friendersFriendId);
   }
 }
