@@ -43,6 +43,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 		Route::post('/profiles/{user}', 'ProfilesController@update')->name('update_profile');
 
 		Route::post('/users/my-settings', 'SettingsController@store');
+
+		Route::post('/friendships/{user}', 'FriendshipsController@store');
 });
 
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/
