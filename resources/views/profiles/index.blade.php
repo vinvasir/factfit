@@ -11,6 +11,13 @@
 
 			<a href="/app/profiles/{{ $user->id }}"><h3>{{ $user->name }}</h3></a>
 
+			<form action="/app/friendships/{{ $user->id }}" method="POST">
+				{{  csrf_field() }}
+
+				<button type="submit" class="btn btn-primary btn-xs">Friend</button>
+			</form>
+
+			<hr />
 		@endforeach
 
 
