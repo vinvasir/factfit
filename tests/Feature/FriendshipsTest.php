@@ -21,20 +21,16 @@ class FriendshipsTest extends TestCase
   {
     $this->signIn();
 
-    $this->post('/app/friendships/{$this->otherUser->id}')
-         ->assertDatabaseHas('friendships', [
-          'friender_id' => auth()->id(),
-          'friended_id' => $this->otherUser->id,
-          'status' => 'pending'
-         ]);
+    $this->post('/app/friendships/' . $this->otherUser->id);
 
-    $friendRequest = DB::table('friendships')->where([
-        'friender_id' => auth()->id(), 
-        'friended_id' => $this->otherUser->id
-      ])
-      ->firstOrFail();
+    $this->assertDatabaseHas('friendships', [
+    'friender_id' => auth()->id(),
+    'friended_id' => $this->otherUser->id,
+    'status' => 'pending'
+    ]);
 
-    $this->assertContains($friendRequest, $this->otherUser->fresh()->incomingFriendRequests);
-    $this->assertContains($friendRequest, auth()->user()->fresh()->outboundFriendRequests);
+// dd($this->otherUser->fresh()->friendshipRequesters->pluck('id'));
+    $this->assertContains(auth()->id(), $this->otherUser->fresh()->friendshipRequesters->pluck('id'));
+    $this->assertContains($this->otherUser->id, auth()->user()->fresh()->friendedUsers->pluck('id'));
   }
 }

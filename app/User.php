@@ -39,6 +39,18 @@ class User extends Authenticatable
         'settings' => 'json'
     ];
 
+    public function friendshipRequesters()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'friended_id', 'friender_id')
+                    ->wherePivot('status', 'pending');
+    }
+
+    public function friendedUsers()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'friender_id', 'friended_id')
+                    ->wherePivot('status', 'pending');
+    }
+
     /**
     * Send the password reset notification.
     *
