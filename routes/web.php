@@ -45,6 +45,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 		Route::post('/users/my-settings', 'SettingsController@store');
 
 		Route::post('/friendships/{user}', 'FriendshipsController@store');
+		Route::post('/friendships/{user}/accept', 'FriendshipsController@accept');
 });
 
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/

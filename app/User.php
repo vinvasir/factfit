@@ -51,6 +51,14 @@ class User extends Authenticatable
                     ->wherePivot('status', 'pending');
     }
 
+    public function friends()
+    {
+        $approvedFrienders = $this->approvedFrienders()->latest()->get();
+        $approvedFriendees = $this->approvedFriendees()->latest()->get();
+
+        return $approvedFrienders->push($approvedFriendees);
+    }
+
     /**
     * Send the password reset notification.
     *
@@ -106,5 +114,17 @@ class User extends Authenticatable
         } else {
             return "You were active on " . $date;
         }
+    }
+
+    protected function approvedFrienders()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'friended_id', 'friender_id')
+                    ->wherePivot('status', 'approved');
+    }
+
+    protected function approvedFriendees()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'friender_id', 'friended_id')
+                    ->wherePivot('status', 'approved');
     }
 }

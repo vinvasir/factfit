@@ -14,9 +14,9 @@ class CreateFriendshipsTable extends Migration
     public function up()
     {
         Schema::create('friendships', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('friender_id');
             $table->unsignedInteger('friended_id');
-            $table->primary(['friender_id', 'friended_id']);
             $table->string('status')->default('pending');
             $table->timestamps();
         });

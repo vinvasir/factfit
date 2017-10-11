@@ -1,9 +1,9 @@
 <?php
 
 namespace Tests\Feature;
+use App\Friendship;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class FriendshipsTest extends TestCase
@@ -50,13 +50,14 @@ class FriendshipsTest extends TestCase
 
     $this->post('/app/friendships/' . $friender->id . '/accept');
 
-    $this->assertDatabaseHas('friendships', [
-    'friender_id' => auth()->id(),
-    'friended_id' => $this->otherUser->id,
-    'status' => 'approved'
-    ]);
+    $friendship = Friendship::where(['friender_id' => $friender->id, 'friended_id' => auth()->id()])->firstOrFail();
 
-    $this->assertContains($friender->id, auth()->user()->fresh()->friends->pluck('id'));
-    $this->assertContains(auth()->id(), $friender->fresh()->friends->pluck('id'));
+    $this->assertEquals('approved', $friendship->status);
+// dd(auth()->user()->fresh()->friends());
+
+    $friendedsFriendId = auth()->user()->fresh()->friends()->pluck('id');
+    $friendersFriendId = $friender->fresh()->friends()->toArray()[0][0]['id'];
+    $this->assertContains($friender->id, auth()->user()->fresh()->friends()->pluck('id'));
+    $this->assertEquals(auth()->user()->fresh()->id, $friendersFriendId);
   }
 }
