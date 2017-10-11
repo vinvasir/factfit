@@ -26,9 +26,9 @@ class SettingsManager {
 			$fullSettings['privacy']['public'] = array_pop($fullSettings['privacy']['public']);
 		}
 
-		$fullSettings['privacy']['showWeightTo'] = array_unique($fullSettings['privacy']['showWeightTo']);
+		$fullSettings['privacy']['showWeightTo'] = array_values(array_unique($fullSettings['privacy']['showWeightTo']));
 
-		$fullSettings['privacy']['showFoodProgressTo'] =  array_unique($fullSettings['privacy']['showFoodProgressTo']);
+		$fullSettings['privacy']['showFoodProgressTo'] =  array_values(array_unique($fullSettings['privacy']['showFoodProgressTo']));
 
 		$this->user->settings = $fullSettings;
 		return $this->user->save();

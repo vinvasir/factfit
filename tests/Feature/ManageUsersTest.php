@@ -86,8 +86,7 @@ class ManageUsersTest extends TestCase
     $expectedSettings['privacy']['showFoodProgressTo'] = ['followers', 'friends'];
 
     $actualSettings = auth()->user()->fresh()->settings;
-// dd($expectedSettings);
-// dd($actualSettings);
+
     $this->assertEquals(array_values($expectedSettings['privacy']['showWeightTo']), $actualSettings['privacy']['showWeightTo']);
         $this->assertEquals(array_values($expectedSettings['privacy']['showFoodProgressTo']), $actualSettings['privacy']['showFoodProgressTo']);
   }
