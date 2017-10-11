@@ -1,9 +1,10 @@
 <?php
 
 namespace Tests\Feature;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Support\Facades\DB;
+use Tests\TestCase;
 
 class FriendshipsTest extends TestCase
 {
@@ -27,11 +28,13 @@ class FriendshipsTest extends TestCase
           'status' => 'pending'
          ]);
 
-    $friendRequest = \DB::table('friendships')->where([
-      'friender_id' => auth()->id(), 'friended_id' => $this->otherUser->id])
+    $friendRequest = DB::table('friendships')->where([
+        'friender_id' => auth()->id(), 
+        'friended_id' => $this->otherUser->id
+      ])
       ->firstOrFail();
 
-    $this->assertContains($friendRequest, $this->otherUser->incomingFriendRequests);
+    $this->assertContains($friendRequest, $this->otherUser->fresh()->incomingFriendRequests);
     $this->assertContains($friendRequest, auth()->user()->fresh()->outboundFriendRequests);
   }
 }
