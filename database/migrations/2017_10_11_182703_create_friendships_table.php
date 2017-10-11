@@ -17,6 +17,7 @@ class CreateFriendshipsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('friender_id');
             $table->unsignedInteger('friended_id');
+            $table->unique(['friender_id', 'friended_id']);
             $table->string('status')->default('pending');
             $table->timestamps();
         });
