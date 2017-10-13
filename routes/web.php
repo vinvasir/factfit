@@ -42,6 +42,9 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 		Route::get('/profiles/{user}/edit', 'ProfilesController@edit')->name('edit_profile');
 		Route::post('/profiles/{user}', 'ProfilesController@update')->name('update_profile');
 
+		Route::get('/profiles/{user}/notifications', 'ProfilesController@notifications');
+		Route::delete('/profiles/{user}/notifications/{notificationId}', 'ProfilesController@destroyNotification')
+
 		Route::post('/users/my-settings', 'SettingsController@store');
 
 		Route::post('/friendships/{user}', 'FriendshipsController@store');

@@ -61,4 +61,18 @@ class ProfilesController extends Controller
 
     	return back();
     }
+
+    public function notifications(User $user)
+    {
+        if ($user->id !== auth()->id()) {
+            return abort(401, "Stop trying to view other users' notifications!");
+        }
+
+        return auth()->user()->unreadNotifications;
+    }
+
+    public function destroyNotification(User $user, $notificationId)
+    {
+        auth()->user()->notifications()->findOrFail($notificationId)->markAsRead();
+    }
 }

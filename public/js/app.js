@@ -62008,14 +62008,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var _this = this;
 
-        axios.get('/profiles/' + window.App.user.id + '/notifications').then(function (response) {
+        axios.get('/app/profiles/' + window.App.user.id + '/notifications').then(function (response) {
             return _this.notifications = response.data;
         });
     },
 
     methods: {
         markAsRead: function markAsRead(notification) {
-            axios.delete('/profiles/' + window.App.user.name + '/notifications/' + notification.id);
+            axios.delete('/app/profiles/' + window.App.user.id + '/notifications/' + notification.id);
         }
     }
 });
