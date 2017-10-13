@@ -62038,7 +62038,7 @@ var render = function() {
           _vm._l(_vm.notifications, function(notification) {
             return _c("li", [
               _c("a", {
-                attrs: { href: notification.data.link },
+                attrs: { href: "/app/profiles/" + _vm.window.App.user.id },
                 domProps: { textContent: _vm._s(notification.data.message) },
                 on: {
                   click: function($event) {

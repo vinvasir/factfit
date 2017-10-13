@@ -72,7 +72,8 @@ class MissedDay extends Notification
         return [
             'message' => $this->user->name . 'missed ' . $this->date . ' on Nutrition Facts Tracker',
             'username' => $this->user->name,
-            'date' => $this->date
+            'date' => $this->date,
+            'link' => '/app/profiles/' . $this->user->id
         ];
     }
 }

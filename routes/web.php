@@ -43,7 +43,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 		Route::post('/profiles/{user}', 'ProfilesController@update')->name('update_profile');
 
 		Route::get('/profiles/{user}/notifications', 'ProfilesController@notifications');
-		Route::delete('/profiles/{user}/notifications/{notificationId}', 'ProfilesController@destroyNotification')
+		Route::delete('/profiles/{user}/notifications/{notificationId}', 'ProfilesController@destroyNotification');
 
 		Route::post('/users/my-settings', 'SettingsController@store');
 

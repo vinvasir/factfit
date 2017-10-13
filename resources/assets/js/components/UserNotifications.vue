@@ -6,7 +6,7 @@
 
         <ul class="dropdown-menu">
             <li v-for="notification in notifications">
-                <a :href="notification.data.link"
+                <a :href="'/app/profiles/' + window.App.user.id"
                    v-text="notification.data.message"
                    @click="markAsRead(notification)"
                 ></a>

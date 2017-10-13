@@ -30,7 +30,9 @@ class ProfilesController extends Controller
             ->selectRaw('DATE_FORMAT(date, "%d %M") as day, weight')
             ->pluck('weight', 'day');
 
-    	return view('profiles.show', compact('user', 'weightByDay'));
+        $notifications = auth()->user()->notifications()->latest()->get();
+
+    	return view('profiles.show', compact('user', 'notifications', 'weightByDay'));
     }
 
     public function edit(User $user)
@@ -67,8 +69,6 @@ class ProfilesController extends Controller
         if ($user->id !== auth()->id()) {
             return abort(401, "Stop trying to view other users' notifications!");
         }
-
-        return auth()->user()->unreadNotifications;
     }
 
     public function destroyNotification(User $user, $notificationId)

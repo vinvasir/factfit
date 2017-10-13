@@ -21,7 +21,21 @@
                    :values="{{ $weightByDay->values() }}"
                    color="red"
              ></graph>
+
+
+            <ul>
+              
+              @foreach($notifications as $notification)
+                <li><pre>
+                  @foreach($notification->data as $key => $value)
+                  <p>{{ $key }} : {{ $value }}</p>
+                  @endforeach
+                </pre></li>
+              @endforeach
+
+            </ul>
           </div>
+
 
       </div>
     </div>
