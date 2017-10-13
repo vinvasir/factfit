@@ -17,6 +17,10 @@
       		</div>
 
       		<div class="panel-body">
+            <graph :labels="['April', 'May', 'June']" 
+                   :values="[100, 420, 99]"
+                   color="red"
+             ></graph>
           </div>
 
       </div>

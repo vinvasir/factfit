@@ -15,7 +15,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('Chart', require('./components/Chart.vue'));
+Vue.component('Graph', require('./components/Graph.vue'));
 
 const app = new Vue({
     el: '#app'
