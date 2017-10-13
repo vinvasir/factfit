@@ -61906,7 +61906,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
 
-  ready: function ready() {
+  mounted: function mounted() {
     var data = {
       labels: this.labels,
 
@@ -61921,7 +61921,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }]
     };
 
-    new __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a(this.$el.getContext('2d')).Line(data);
+    new __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a(this.$el.getContext('2d'), {
+      type: 'line',
+      data: data
+    });
   }
 });
 

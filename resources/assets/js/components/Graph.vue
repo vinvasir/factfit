@@ -14,7 +14,7 @@
         }
     },
 
-    ready() {
+    mounted() {
         var data = {
           labels: this.labels,
           
@@ -32,8 +32,12 @@
         };
 
         new Chart(
-            this.$el.getContext('2d')
-        ).Line(data);
+            this.$el.getContext('2d'),
+            {
+              type: 'line',
+              data
+            }
+        );
     }
   }
 </script>
