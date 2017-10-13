@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Day;
 use App\Presenters\SettingsPresenter;
 use App\User;
 use Illuminate\Http\Request;
@@ -25,7 +26,11 @@ class ProfilesController extends Controller
             return redirect()->route('profile', auth()->id());
         }
 
-    	return view('profiles.show', compact('user'));
+        $weightByDay = Day::whereNotNull('weight')
+            ->selectRaw('DATE_FORMAT(date, "%d %M") as day, weight')
+            ->pluck('weight', 'day');
+
+    	return view('profiles.show', compact('user', 'weightByDay'));
     }
 
     public function edit(User $user)
