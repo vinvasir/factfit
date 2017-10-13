@@ -20,9 +20,10 @@ class MissedDay extends Notification
      *
      * @return void
      */
-    public function __construct($date)
+    public function __construct($date, $user)
     {
         $this->date = $date->format('D. M d, Y');
+        $this->user = $user;
     }
 
     /**
@@ -69,7 +70,9 @@ class MissedDay extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'message' => $this->user->name . 'missed ' . $this->date . ' on Nutrition Facts Tracker',
+            'username' => $this->user->name,
+            'date' => $this->date
         ];
     }
 }
