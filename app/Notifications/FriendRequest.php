@@ -59,9 +59,7 @@ class FriendRequest extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => [
-                $this->friender->name . ' sent you a friend request ' . $this->created_at->diffForHumans()
-            ]
+            'message' => $this->friender->name . ' sent you a friend request'
         ];
     }
 }

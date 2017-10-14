@@ -15,7 +15,9 @@ class FriendshipsController extends Controller
         try {
             $friendship = Friendship::create(['friender_id' => auth()->id(), 'friended_id' => $user->id]);
 
-            new FriendRequest(auth()->user(), $user);
+            $n = new FriendRequest(auth()->user(), $user);
+
+            $user->notify($n);
 
             return back();
         } catch (QueryException $e) {
