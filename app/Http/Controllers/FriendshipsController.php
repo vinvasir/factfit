@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Friendship;
+use App\Notifications\FriendRequest;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -13,6 +14,8 @@ class FriendshipsController extends Controller
     {
         try {
             $friendship = Friendship::create(['friender_id' => auth()->id(), 'friended_id' => $user->id]);
+
+            new FriendRequest(auth()->user(), $user);
 
             return back();
         } catch (QueryException $e) {
