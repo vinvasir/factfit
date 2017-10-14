@@ -105,7 +105,7 @@ class User extends Authenticatable
 
     public function friendsWith(User $user)
     {
-        return in_array($user, $this->friends());
+        return $this->friends()->contains($user);
     }
 
     public function checkActivityFor($date)
