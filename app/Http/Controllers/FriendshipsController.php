@@ -43,6 +43,6 @@ class FriendshipsController extends Controller
     	Friendship::where(['friender_id' => $user->id, 'friended_id' => auth()->id()])
     		->get()[0]->update(['status' => 'approved']);
 
-        return back();
+        return redirect()->route('profile', [$user]);
     }
 }

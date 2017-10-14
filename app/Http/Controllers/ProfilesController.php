@@ -22,7 +22,7 @@ class ProfilesController extends Controller
 
     public function show(User $user)
     {
-        if ($user->settings['privacy']['public'] != true) {
+        if ($user->settings['privacy']['public'] != true && !$user->friendsWith(auth()->user())) {
             return redirect()->route('profile', auth()->id());
         }
 

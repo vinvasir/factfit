@@ -103,6 +103,11 @@ class User extends Authenticatable
         ]);
     }
 
+    public function friendsWith(User $user)
+    {
+        return in_array($user, $this->friends());
+    }
+
     public function checkActivityFor($date)
     {
         if ($this->days()->where(['date' => $date])->count() == 0) {
