@@ -29,6 +29,7 @@ class ProfilesController extends Controller
         $weightByDay = Day::where('user_id', auth()->id())
             ->whereNotNull('weight')
             ->selectRaw('DATE_FORMAT(date, "%d %M") as day, weight')
+            ->orderBy('day')
             ->pluck('weight', 'day');
 
         $notifications = auth()->user()->notifications()->latest()->get();
