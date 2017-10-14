@@ -26,8 +26,7 @@ class ProfilesController extends Controller
             return redirect()->route('profile', auth()->id());
         }
 
-        $weightByDay = Day::where('user_id', auth()->id())
-            ->whereNotNull('weight')
+        $weightByDay = $user->days->whereNotNull('weight')
             ->selectRaw('DATE_FORMAT(date, "%d %M") as day, weight')
             ->orderBy('date', 'ASC')
             ->pluck('weight', 'day');
