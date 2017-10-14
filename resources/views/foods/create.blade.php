@@ -11,8 +11,6 @@
                 		<form action="/app/days/{{ $day->id }}/foods" method="POST">
                 				{{ csrf_field() }}
 
-                                <div class="form-group">
-
                 				<div class="form-group">
                 						<label for="name">Food Name:</label>
                 						<input type="name" name="name" id="name" class="form-control"

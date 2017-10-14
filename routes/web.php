@@ -48,6 +48,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 		Route::post('/users/my-settings', 'SettingsController@store');
 
 		Route::post('/friendships/{user}', 'FriendshipsController@store');
+		Route::get('/friendships/{user}/accept', 'FriendshipsController@confirmation');
 		Route::post('/friendships/{user}/accept', 'FriendshipsController@accept');
 });
 

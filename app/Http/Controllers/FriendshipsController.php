@@ -25,6 +25,15 @@ class FriendshipsController extends Controller
         }
     }
 
+    public function confirmation(User $user)
+    {
+        if (!in_array($user->id, auth()->user()->friendshipRequesters->pluck('id')->toArray())) {
+            return abort(401, "That user doesn't want to be your friend!");
+        }
+
+        return view('friendships.confirmation', compact('user'));        
+    }
+
     public function accept(User $user)
     {
     	if (!in_array($user->id, auth()->user()->friendshipRequesters->pluck('id')->toArray())) {

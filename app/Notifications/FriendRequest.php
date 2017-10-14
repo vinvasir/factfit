@@ -46,7 +46,7 @@ class FriendRequest extends Notification
     {
         return (new MailMessage)
                     ->line($this->friender->name . ' sent you a friend request on Nutrition Facts Tracker')
-                    ->action('Accept Request', url('/friendships/' . $this->friender->id . '/accept'))
+                    ->action('Accept Request', url('/app/friendships/' . $this->friender->id . '/accept'))
                     ->line("If you accept this request, you can see each other's health progress and compete with each other!");
     }
 
