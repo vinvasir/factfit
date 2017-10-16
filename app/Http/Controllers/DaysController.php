@@ -36,7 +36,7 @@ class DaysController extends Controller
      */
     public function create(Request $request)
     {
-        $newDate = $request->query('date') ? $request->query('date') : \Carbon\Carbon::now()->toDateString();
+        $newDate = $request->query('date') ? $request->query('date') : \Carbon\Carbon::now("America/New_York")->toDateString();
 
         return view('days.create', compact('newDate'));
     }
