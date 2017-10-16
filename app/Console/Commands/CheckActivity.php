@@ -38,7 +38,7 @@ class CheckActivity extends Command
     public function handle()
     {
         \App\User::all()->each(function($user) {
-            $user->checkActivityFor(\Carbon\Carbon::now());
+            $user->checkActivityFor(\Carbon\Carbon::now("America\New_York"));
         });
     }
 }
