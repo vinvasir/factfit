@@ -35,7 +35,7 @@ class Day extends Model implements FCEvent
 
   public function addFood($requestParams)
   {
-    $this->foods()->create($requestParams);
+    return $this->foods()->create($requestParams);
   }
 
 

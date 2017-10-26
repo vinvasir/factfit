@@ -18040,7 +18040,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(136);
-module.exports = __webpack_require__(229);
+module.exports = __webpack_require__(232);
 
 
 /***/ }),
@@ -18067,9 +18067,9 @@ window.Vue = __webpack_require__(160);
 Vue.component('Graph', __webpack_require__(161));
 Vue.component('user-notifications', __webpack_require__(212));
 Vue.component('food-circle', __webpack_require__(215));
-Vue.component('food-choice', __webpack_require__(238));
-Vue.component('food-list', __webpack_require__(223));
-Vue.component('food', __webpack_require__(226));
+Vue.component('food-choice', __webpack_require__(223));
+Vue.component('food-list', __webpack_require__(226));
+Vue.component('food', __webpack_require__(229));
 
 var app = new Vue({
   el: '#app'
@@ -62540,24 +62540,83 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: {
-		endpoint: {
-			required: true,
-			type: String
-		}
-	},
-	data: function data() {
-		return {
-			selectedFood: ''
-		};
-	}
+  props: {
+    endpoint: {
+      required: true,
+      type: String
+    }
+  },
+  data: function data() {
+    return {
+      selectedFood: { name: '' },
+      meal: 3,
+      foodChoices: [{
+        name: 'Cruciferous Vegetables',
+        imageName: 'cruciferous-veggies1.jpg',
+        type_name: '',
+        description: 'Cruciferous Veggies (e.g., Kale, Broccoli)',
+        processed: false
+      }, {
+        name: "Leafy Greens",
+        imageName: "dark-leafy-greens.jpg",
+        processed: false
+      }, {
+        name: "Ice Cream",
+        imageName: "cashew-ice-cream.jpg",
+        processed: true
+      }, {
+        name: "Meat Substitutes",
+        imageName: "meat-substitute.jpg",
+        processed: true
+      }, {
+        name: 'Fruits',
+        imageName: 'fruit.jpg',
+        processed: false
+      }, {
+        name: 'Legumes',
+        imageName: 'legumes.jpg',
+        processed: false
+      }, {
+        name: 'Refined Grains',
+        imageName: 'white-bread.jpg',
+        processed: true
+      }, {
+        name: "Whole Grains",
+        imageName: "whole-grains.jpg",
+        description: "Unprocessed Starch (e.g. Potatoes, Whole Grains)",
+        processed: false
+      }]
+    };
+  },
+
+  methods: {
+    selectFood: function selectFood(event) {
+      console.log(event);
+      this.selectedFood = event;
+    },
+    submitFood: function submitFood() {
+      var _this = this;
+
+      axios.post(this.endpoint, {
+        name: this.selectedFood.name,
+        type_name: this.selectedFood.name,
+        description: this.selectedFood.description,
+        processed: this.selectedFood.processed,
+        meal: this.meal
+      }).then(function (_ref) {
+        var data = _ref.data;
+
+        _this.$emit('foodAdded', data);
+      });
+    }
+  },
+  computed: {
+    confirmation: function confirmation() {
+      return 'Add ' + this.selectedFood.name + ' to your day?';
+    }
+  }
 });
 
 /***/ }),
@@ -62572,61 +62631,73 @@ var render = function() {
     _c(
       "ul",
       { staticClass: "circle-container" },
-      [
-        _c("food-choice", {
-          attrs: {
-            name: "Cruciferous Veggies",
-            "image-name": "cruciferous-veggies1.jpg",
-            description: "Cruciferous Veggies (e.g., Kale, Broccoli)"
-          }
-        }),
-        _vm._v(" "),
-        _c("food-choice", {
-          attrs: {
-            name: "Dark Leafy Greens",
-            "image-name": "dark-leafy-greens.jpg"
-          }
-        }),
-        _vm._v(" "),
-        _c("food-choice", {
-          attrs: { name: "Ice Cream", "image-name": "cashew-ice-cream.jpg" }
-        }),
-        _vm._v(" "),
-        _c("food-choice", {
-          attrs: {
-            name: "Meat Substitute",
-            "image-name": "meat-substitute.jpg"
-          }
-        }),
-        _vm._v(" "),
-        _c("food-choice", {
-          attrs: { name: "fruit", "image-name": "fruit.jpg" }
-        }),
-        _vm._v(" "),
-        _c("food-choice", {
-          attrs: { name: "legumes", "image-name": "legumes.jpg" }
-        }),
-        _vm._v(" "),
-        _c("food-choice", {
-          attrs: { name: "Refined Starch", "image-name": "white-bread.jpg" }
-        }),
-        _vm._v(" "),
-        _c("food-choice", {
-          attrs: {
-            name: "Unprocessed Starch",
-            "image-name": "whole-grains.jpg",
-            description: "Unprocessed Starch (e.g. Potatoes, Whole Grains)"
+      _vm._l(_vm.foodChoices, function(choice, index) {
+        return _c("food-choice", {
+          key: index,
+          attrs: { "food-data": choice },
+          on: {
+            choose: function($event) {
+              _vm.selectFood($event)
+            }
           }
         })
-      ],
-      1
+      })
     ),
     _vm._v(" "),
-    _c("form", { attrs: { action: _vm.endpoint } }, [
-      _c("input", {
-        attrs: { type: "hidden" },
-        domProps: { value: _vm.selectedFood }
-      })
+    _c("div", [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.meal,
+              expression: "meal"
+            }
+          ],
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.meal = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "0" } }, [_vm._v("Breakfast")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "1" } }, [_vm._v("Lunch")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2" } }, [_vm._v("Dinner")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3" } }, [_vm._v("Snack")])
+        ]
+      ),
+      _vm._v(" "),
+      _vm.selectedFood.name.length > 0
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.submitFood($event)
+                }
+              }
+            },
+            [_vm._v("\n            " + _vm._s(_vm.confirmation) + "\n      ")]
+          )
+        : _vm._e()
     ])
   ])
 }
@@ -62650,255 +62721,6 @@ var normalizeComponent = __webpack_require__(6)
 var __vue_script__ = __webpack_require__(224)
 /* template */
 var __vue_template__ = __webpack_require__(225)
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/FoodList.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] FoodList.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a147132e", Component.options)
-  } else {
-    hotAPI.reload("data-v-a147132e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 224 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	props: {
-		endpoint: {
-			type: String,
-			required: true
-		}
-	},
-	data: function data() {
-		return {
-			foods: []
-		};
-	},
-	created: function created() {
-		var _this = this;
-
-		axios.get(this.endpoint).then(function (_ref) {
-			var data = _ref.data;
-
-			_this.foods = data.foods;
-		});
-	}
-});
-
-/***/ }),
-/* 225 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._l(_vm.foods, function(food) {
-        return _c("food", { attrs: { "food-data": food } })
-      }),
-      _vm._v(" "),
-      _c(
-        "div",
-        { attrs: { id: "food-form" } },
-        [_c("food-circle", { attrs: { endpoint: _vm.endpoint } })],
-        1
-      )
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-a147132e", module.exports)
-  }
-}
-
-/***/ }),
-/* 226 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(6)
-/* script */
-var __vue_script__ = __webpack_require__(227)
-/* template */
-var __vue_template__ = __webpack_require__(228)
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Food.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Food.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-afe63baa", Component.options)
-  } else {
-    hotAPI.reload("data-v-afe63baa", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 227 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	props: {
-		foodData: {
-			type: Object,
-			required: true
-		},
-		mealName: {
-			type: String
-		},
-		typeName: {
-			type: String
-		}
-	},
-	computed: {
-		processed: function processed() {
-			return this.foodData.processed ? 'Processed food' : 'Whole food';
-		}
-	}
-});
-
-/***/ }),
-/* 228 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "well" }, [
-    _c("h4", [_vm._v(_vm._s(_vm.foodData.name))]),
-    _vm._v(" "),
-    _c("h4", [_vm._v(_vm._s(_vm.foodData.typeName))]),
-    _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.foodData.mealName))]),
-    _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.processed))]),
-    _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.foodData.description))])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-afe63baa", module.exports)
-  }
-}
-
-/***/ }),
-/* 229 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(6)
-/* script */
-var __vue_script__ = __webpack_require__(239)
-/* template */
-var __vue_template__ = __webpack_require__(240)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -62936,7 +62758,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 239 */
+/* 224 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62951,41 +62773,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
-		name: {
-			type: String,
+		foodData: {
+			type: Object,
 			required: true
-		},
-		imageName: {
-			type: String,
-			required: true
-		},
-		description: {
-			type: String
 		}
 	},
 	computed: {
-		finalDescription: function finalDescription() {
-			return this.description ? this.description : this.name;
+		description: function description() {
+			return this.foodData.description ? this.foodData.description : this.foodData.name;
 		},
 		imagePath: function imagePath() {
-			return "/images/" + this.imageName;
+			return '/images/' + this.foodData.imageName;
+		}
+	},
+	methods: {
+		chooseFood: function chooseFood() {
+			var sanitizedData = this.foodData;
+
+			sanitizedData.description = this.description;
+
+			this.$emit('choose', this.foodData);
 		}
 	}
 });
 
 /***/ }),
-/* 240 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", [
-    _c("img", { attrs: { src: _vm.imagePath, alt: _vm.name } }),
+  return _c("li", { on: { click: _vm.chooseFood } }, [
+    _c("img", { attrs: { src: _vm.imagePath, alt: _vm.foodData.name } }),
     _vm._v(" "),
     _c("span", { staticClass: "tooltiptext" }, [
-      _vm._v(_vm._s(_vm.finalDescription))
+      _vm._v(_vm._s(_vm.description))
     ])
   ])
 }
@@ -62998,6 +62822,264 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-d991ada8", module.exports)
   }
 }
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(6)
+/* script */
+var __vue_script__ = __webpack_require__(227)
+/* template */
+var __vue_template__ = __webpack_require__(228)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/FoodList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] FoodList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a147132e", Component.options)
+  } else {
+    hotAPI.reload("data-v-a147132e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 227 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: {
+		endpoint: {
+			type: String,
+			required: true
+		}
+	},
+	data: function data() {
+		return {
+			foods: []
+		};
+	},
+	created: function created() {
+		var _this = this;
+
+		axios.get(this.endpoint).then(function (_ref) {
+			var data = _ref.data;
+
+			_this.foods = data.foods;
+		});
+	},
+
+	methods: {
+		addFood: function addFood(event) {
+			console.log('adding: ');
+			console.log(event);
+			this.foods.push(event);
+		}
+	}
+});
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.foods, function(food) {
+        return _c("food", { attrs: { "food-data": food } })
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { id: "food-form" } },
+        [
+          _c("food-circle", {
+            attrs: { endpoint: _vm.endpoint },
+            on: {
+              foodAdded: function($event) {
+                _vm.addFood($event)
+              }
+            }
+          })
+        ],
+        1
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-a147132e", module.exports)
+  }
+}
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(6)
+/* script */
+var __vue_script__ = __webpack_require__(230)
+/* template */
+var __vue_template__ = __webpack_require__(231)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Food.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Food.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-afe63baa", Component.options)
+  } else {
+    hotAPI.reload("data-v-afe63baa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 230 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: {
+		foodData: {
+			type: Object,
+			required: true
+		},
+		mealName: {
+			type: String
+		},
+		typeName: {
+			type: String
+		}
+	},
+	computed: {
+		processed: function processed() {
+			return this.foodData.processed ? 'Processed food' : 'Whole food';
+		}
+	}
+});
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "well" }, [
+    _c("h4", [_vm._v(_vm._s(_vm.foodData.name))]),
+    _vm._v(" "),
+    _c("h4", [_vm._v(_vm._s(_vm.foodData.typeName))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.foodData.mealName))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.processed))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.foodData.description))])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-afe63baa", module.exports)
+  }
+}
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

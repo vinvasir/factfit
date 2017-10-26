@@ -63,7 +63,7 @@ class FoodsController extends Controller
             'meal' => 'required',
         ]);
 
-        $day->addFood([
+        $newFood = $day->addFood([
             'user_id' => $day->user->id,
             'name' => request('name'),
             'description' => request('description'),
@@ -71,6 +71,10 @@ class FoodsController extends Controller
             'processed' => request('processed'),
             'meal' => request('meal')
         ]);
+
+        if (request()->wantsJson()) {
+            return (new FoodTransformer)->transform($newFood);
+        }
 
         return redirect('/app/days/' . $day->id);
     }

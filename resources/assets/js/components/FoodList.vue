@@ -3,7 +3,7 @@
 		<food v-for="food in foods" :food-data="food"></food>
 
     <div id="food-form">
-      <food-circle :endpoint="endpoint">
+      <food-circle :endpoint="endpoint" @foodAdded="addFood($event)">
       </food-circle>
     </div>		
 	</div>
@@ -27,6 +27,13 @@
 				 .then(({data}) => {
 				 		this.foods = data.foods;
 				 });
+		},
+		methods: {
+			addFood(event) {
+				console.log('adding: ');
+				console.log(event);
+				this.foods.push(event);
+			}
 		}
 	}
 </script>

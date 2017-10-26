@@ -2,33 +2,28 @@
 	<div>
     <ul class='circle-container'>
 
-      <food-choice name="Cruciferous Veggies"
-          image-name="cruciferous-veggies1.jpg"
-          description="Cruciferous Veggies (e.g., Kale, Broccoli)">
-      </food-choice>
+      <food-choice v-for="(choice, index) in foodChoices" :key="index"
+          :food-data="choice"
+          @choose="selectFood($event)">
+      </food-choice>     
+    </ul>   
 
-      <food-choice name="Dark Leafy Greens" image-name="dark-leafy-greens.jpg"></food-choice>
+    <div >
+      <select v-model="meal">
+        <option value="0">Breakfast</option>
+        <option value="1">Lunch</option>
+        <option value="2">Dinner</option>
+        <option value="3">Snack</option>
+      </select>
 
-      <food-choice name="Ice Cream" image-name="cashew-ice-cream.jpg"></food-choice>
-
-      <food-choice name="Meat Substitute" image-name="meat-substitute.jpg"></food-choice>
-
-      <food-choice name="fruit" image-name="fruit.jpg"></food-choice>
-
-      <food-choice name="legumes" image-name="legumes.jpg"></food-choice>
-
-      <food-choice name="Refined Starch" image-name="white-bread.jpg"></food-choice>
-
-      <food-choice name="Unprocessed Starch" image-name="whole-grains.jpg"
-          description="Unprocessed Starch (e.g. Potatoes, Whole Grains)">
-      </food-choice>
-    </ul>
-
-    <form :action="endpoint">
-    	<input type="hidden" :value="selectedFood" />
-    </form>
-    
-  </div>
+      <button v-if="selectedFood.name.length > 0" 
+              class="btn btn-primary" 
+              @click.prevent="submitFood"
+        >
+            {{ confirmation }}
+      </button>
+    </div>
+  </div>  
 </template>
 
 <script type="text/javascript">
@@ -41,9 +36,77 @@
 		},
 		data() {
 			return {
-				selectedFood: ''
+				selectedFood: {name: ''},
+        meal: 3,
+        foodChoices: [
+          {
+            name: 'Cruciferous Vegetables',
+            imageName: 'cruciferous-veggies1.jpg',
+            type_name: '',
+            description: 'Cruciferous Veggies (e.g., Kale, Broccoli)',
+            processed: false
+          },
+          {
+            name: "Leafy Greens",
+            imageName: "dark-leafy-greens.jpg",
+            processed: false
+          },
+          {
+            name: "Ice Cream",
+            imageName: "cashew-ice-cream.jpg",
+            processed: true
+          },
+          {
+            name: "Meat Substitutes",
+            imageName: "meat-substitute.jpg",
+            processed: true
+          },
+          {
+            name: 'Fruits',
+            imageName: 'fruit.jpg',
+            processed: false
+          },
+          {
+            name: 'Legumes',
+            imageName: 'legumes.jpg',
+            processed: false
+          },
+          {
+            name: 'Refined Grains',
+            imageName: 'white-bread.jpg',
+            processed: true
+          },
+          {
+            name: "Whole Grains",
+            imageName: "whole-grains.jpg",
+            description: "Unprocessed Starch (e.g. Potatoes, Whole Grains)",
+            processed: false
+          }
+        ]
 			};
-		}
+		},
+    methods: {
+      selectFood(event) {
+        console.log(event);
+        this.selectedFood = event;
+      },
+      submitFood() {
+        axios.post(this.endpoint, {
+          name: this.selectedFood.name,
+          type_name: this.selectedFood.name,
+          description: this.selectedFood.description,
+          processed: this.selectedFood.processed,
+          meal: this.meal
+        }).then(({data}) => {
+          this.$emit('foodAdded', data);
+        })
+      }
+    },
+    computed: {
+      confirmation() {
+        return `Add ${this.selectedFood.name} to your day?`
+      }
+    }
 	}
 </script>
 

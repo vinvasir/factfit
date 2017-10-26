@@ -31,6 +31,7 @@ class FoodTypeFactory {
 		'Apples' => '\Apple',
 		'Berries' => '\Berry',
 		'Sweet Fruits' => '\SweetFruit',
+		'Fruits' => '\SweetFruit',
 		'Legumes' => '\Legume',
 		'Whole Grains' => '\WholeGrain',
 		'Refined Grains' => '\RefinedGrain',

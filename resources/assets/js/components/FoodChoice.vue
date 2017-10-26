@@ -1,31 +1,33 @@
 <template>
-  <li>
-  	<img :src="imagePath" :alt="name" />
-  	<span class="tooltiptext">{{ finalDescription }}</span>
+  <li @click="chooseFood">
+  	<img :src="imagePath" :alt="foodData.name" />
+  	<span class="tooltiptext">{{ description }}</span>
   </li>
 </template>
 
 <script type="text/javascript">
 	export default {
 		props: {
-			name: {
-				type: String,
+			foodData: {
+				type: Object,
 				required: true
-			},
-			imageName: {
-				type: String,
-				required: true
-			},
-			description: {
-				type: String
 			}
 		},
 		computed: {
-			finalDescription() {
-				return this.description ? this.description : this.name
+			description() {
+				return this.foodData.description ? this.foodData.description : this.foodData.name
 			},
 			imagePath() {
-				return `/images/${this.imageName}`;
+				return `/images/${this.foodData.imageName}`;
+			}
+		},
+		methods: {
+			chooseFood() {
+				let sanitizedData = this.foodData;
+
+				sanitizedData.description = this.description;
+				
+				this.$emit('choose', this.foodData);
 			}
 		}
 	}
