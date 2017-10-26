@@ -65,6 +65,10 @@ class DaysController extends Controller
     {
         $foods = $day->foods;
 
+        if (request()->wantsJson()) {
+            return $day;
+        }
+
         return view('days.show', compact('day', 'foods'));
     }
 

@@ -33,6 +33,7 @@
 				console.log('adding: ');
 				console.log(event);
 				this.foods.push(event);
+				this.$emit('list_updated');
 			}
 		}
 	}

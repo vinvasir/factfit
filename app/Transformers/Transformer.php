@@ -9,7 +9,7 @@ abstract class Transformer {
 	 * Transform a collection of lessons
 	 *
 	 * @param $items
-	 * @return  array
+	 * @return  Illuminate\Database\Eloquent\Collection
 	 */
 	public function transformCollection(Collection $items)
 	{
