@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<food v-for="food in foods" :food-data="food"></food>
+		<food v-for="food in foods" :food-data="food" :key="food.id"></food>
 
     <div id="food-form">
       <food-circle :endpoint="endpoint" @foodAdded="addFood($event)">

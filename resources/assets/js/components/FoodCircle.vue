@@ -8,8 +8,8 @@
       </food-choice>     
     </ul>   
 
-    <div >
-      <select v-model="meal">
+    <div class="form-group">
+      <select v-model="meal" class="form-control">
         <option value="0">Breakfast</option>
         <option value="1">Lunch</option>
         <option value="2">Dinner</option>
@@ -22,6 +22,10 @@
         >
             {{ confirmation }}
       </button>
+    </div>
+
+    <div>
+      <a class="btn btn-danger" :href="endpoint + '/create'">OR Add a Custom Food</a>
     </div>
   </div>  
 </template>
