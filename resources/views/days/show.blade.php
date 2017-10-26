@@ -24,16 +24,18 @@
 
               @foreach($foods as $food)
 
-                <div class="well">
-                  <h4>{{ $food->name }}</h4>
-                  <h4>{{ $food->typeName() }}</h4>
-                  <p>{{ $food->mealName() }}</p>
-                  <p>{{ $food->processed ? 'Processed food' : 'Whole food' }}</p>
-                  <p>{{ $food->description}}</p>
-                </div>
+                <food :food-data="{{ $food }}" 
+                      type-name="{{ $food->typeName() }}"
+                      meal-name="{{ $food->mealName() }}">
+                </food>
 
               @endforeach
       		</div>
+
+          <div id="food-form">
+            <food-circle endpoint="/app/days/{{ $day->id }}/foods">
+            </food-circle>
+          </div>
       </div>
     </div>
   </div>

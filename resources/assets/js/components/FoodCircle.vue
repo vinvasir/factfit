@@ -35,12 +35,21 @@
       </li>
     </ul>
 
-    <input type="hidden" :value="selectedFood" />
+    <form :action="endpoint">
+    	<input type="hidden" :value="selectedFood" />
+    </form>
+    
   </div>
 </template>
 
 <script type="text/javascript">
 	export default {
+		props: {
+			endpoint: {
+				required: true,
+				type: String
+			}
+		},
 		data() {
 			return {
 				selectedFood: ''
@@ -67,7 +76,7 @@ img {
  
     /* Position the tooltip text - see examples below! */
     position: absolute;
-    /*z-index: 1;*/
+    z-index: 1;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */

@@ -18067,6 +18067,7 @@ window.Vue = __webpack_require__(160);
 Vue.component('Graph', __webpack_require__(161));
 Vue.component('user-notifications', __webpack_require__(212));
 Vue.component('food-circle', __webpack_require__(225));
+Vue.component('food', __webpack_require__(232));
 
 var app = new Vue({
   el: '#app'
@@ -62270,8 +62271,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+	props: {
+		endpoint: {
+			required: true,
+			type: String
+		}
+	},
 	data: function data() {
 		return {
 			selectedFood: ''
@@ -62290,10 +62300,12 @@ var render = function() {
   return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-    _c("input", {
-      attrs: { type: "hidden" },
-      domProps: { value: _vm.selectedFood }
-    })
+    _c("form", { attrs: { action: _vm.endpoint } }, [
+      _c("input", {
+        attrs: { type: "hidden" },
+        domProps: { value: _vm.selectedFood }
+      })
+    ])
   ])
 }
 var staticRenderFns = [
@@ -62423,7 +62435,7 @@ exports = module.exports = __webpack_require__(217)(undefined);
 
 
 // module
-exports.push([module.i, "\nimg {\n\t/*z-index: 0;*/\n}\n\n/* Tooltip text */\n.tooltiptext {\n    visibility: hidden;\n    width: 120px;\n    background-color: black;\n    color: #fff;\n    text-align: center;\n    padding: 5px 0;\n    border-radius: 6px;\n \n    /* Position the tooltip text - see examples below! */\n    position: absolute;\n    /*z-index: 1;*/\n}\n\n/* Show the tooltip text when you mouse over the tooltip container */\nli:hover .tooltiptext {\n    visibility: visible;\n}\n", ""]);
+exports.push([module.i, "\nimg {\n\t/*z-index: 0;*/\n}\n\n/* Tooltip text */\n.tooltiptext {\n    visibility: hidden;\n    width: 120px;\n    background-color: black;\n    color: #fff;\n    text-align: center;\n    padding: 5px 0;\n    border-radius: 6px;\n \n    /* Position the tooltip text - see examples below! */\n    position: absolute;\n    z-index: 1;\n}\n\n/* Show the tooltip text when you mouse over the tooltip container */\nli:hover .tooltiptext {\n    visibility: visible;\n}\n", ""]);
 
 // exports
 
@@ -62681,6 +62693,119 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(16)
+/* script */
+var __vue_script__ = __webpack_require__(233)
+/* template */
+var __vue_template__ = __webpack_require__(234)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Food.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Food.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-afe63baa", Component.options)
+  } else {
+    hotAPI.reload("data-v-afe63baa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 233 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: {
+		foodData: {
+			type: Object,
+			required: true
+		},
+		mealName: {
+			type: String
+		},
+		typeName: {
+			type: String
+		}
+	},
+	computed: {
+		processed: function processed() {
+			return this.foodData.processed ? 'Processed food' : 'Whole food';
+		}
+	}
+});
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "well" }, [
+    _c("h4", [_vm._v(_vm._s(_vm.foodData.name))]),
+    _vm._v(" "),
+    _c("h4", [_vm._v(_vm._s(_vm.typeName))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.mealName))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.processed))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.foodData.description))])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-afe63baa", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

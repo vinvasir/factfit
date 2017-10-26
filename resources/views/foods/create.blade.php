@@ -25,10 +25,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <food-circle></food-circle>
-                                </div>
-
-                                <div class="form-group">
                                     <label for="type">Choose a food type</label>
                                     <select name="type_name" id="type" class="form-control" required>
                                         <option value="">--Choose a food type--</option>
