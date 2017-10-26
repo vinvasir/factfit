@@ -2,17 +2,6 @@
 
 @section('content')
 <div class="container">
-    <ul class='circle-container'>
-      <li><img src='http://lorempixel.com/100/100/city' alt="..." /></li>
-      <li><img src='http://lorempixel.com/100/100/nature' alt="..." /></li>
-      <li><img src='http://lorempixel.com/100/100/abstract' alt="..." /></li>
-      <li><img src='http://lorempixel.com/100/100/cats' alt="..." /></li>
-      <li><img src='http://lorempixel.com/100/100/food' alt="..." /></li>
-      <li><img src='http://lorempixel.com/100/100/animals' alt="..." /></li>
-      <li><img src='http://lorempixel.com/100/100/business' alt="..." /></li>
-      <li><img src='http://lorempixel.com/100/100/people' alt="..." /></li>
-    </ul>
-    
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -33,6 +22,10 @@
                                     <textarea name="description" rows="3" class="form-control" required>
                                         {{ old('description ') }}
                                     </textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <food-circle></food-circle>
                                 </div>
 
                                 <div class="form-group">
