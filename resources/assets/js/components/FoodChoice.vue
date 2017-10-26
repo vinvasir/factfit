@@ -12,7 +12,7 @@
 				type: String,
 				required: true
 			},
-			imagePath: {
+			imageName: {
 				type: String,
 				required: true
 			},
@@ -23,6 +23,9 @@
 		computed: {
 			finalDescription() {
 				return this.description ? this.description : this.name
+			},
+			imagePath() {
+				return `/images/${this.imageName}`;
 			}
 		}
 	}

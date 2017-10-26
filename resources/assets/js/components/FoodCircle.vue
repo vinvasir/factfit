@@ -3,38 +3,25 @@
     <ul class='circle-container'>
 
       <food-choice name="Cruciferous Veggies"
-          image-path="/images/cruciferous-veggies1.jpg"
+          image-name="cruciferous-veggies1.jpg"
           description="Cruciferous Veggies (e.g., Kale, Broccoli)">
       </food-choice>
 
-      <li>
-      	<img src='/images/dark-leafy-greens.jpg' alt="Dark Leafy Greens" />
-      	<span class="tooltiptext">Dark Leafy Greens</span>
-      </li>
-      <li>
-      	<img src='/images/cashew-ice-cream.jpg' alt="Ice Cream" />
-      	<span class="tooltiptext">Ice Cream</span>
-      </li>
-      <li>
-      	<img src='/images/meat-substitute.jpg' alt="Meat Substitute" />
-      	<span class="tooltiptext">Meat Substitutes</span>
-      </li>
-      <li>
-      	<img src='/images/fruit.jpg' alt="Fruit" />
-      	<span class="tooltiptext">Fruit</span>
-      </li>
-      <li>
-      	<img src='/images/legumes.jpg' alt="Legumes" />
-      	<span class="tooltiptext">Legumes</span>
-      </li>
-      <li>
-      	<img src='/images/white-bread.jpg' alt="Refined Starch" />
-      	<span class="tooltiptext">Refined Starch</span>
-      </li>
-      <li>
-      	<img src='/images/whole-grains.jpg' alt="Whole Grains and other Starch" />
-      	<span class="tooltiptext">Unprocessed Starch (e.g. Potatoes, Whole Grains)</span>
-      </li>
+      <food-choice name="Dark Leafy Greens" image-name="dark-leafy-greens.jpg"></food-choice>
+
+      <food-choice name="Ice Cream" image-name="cashew-ice-cream.jpg"></food-choice>
+
+      <food-choice name="Meat Substitute" image-name="meat-substitute.jpg"></food-choice>
+
+      <food-choice name="fruit" image-name="fruit.jpg"></food-choice>
+
+      <food-choice name="legumes" image-name="legumes.jpg"></food-choice>
+
+      <food-choice name="Refined Starch" image-name="white-bread.jpg"></food-choice>
+
+      <food-choice name="Unprocessed Starch" image-name="whole-grains.jpg"
+          description="Unprocessed Starch (e.g. Potatoes, Whole Grains)">
+      </food-choice>
     </ul>
 
     <form :action="endpoint">

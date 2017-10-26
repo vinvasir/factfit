@@ -62545,19 +62545,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
@@ -62589,24 +62576,48 @@ var render = function() {
         _c("food-choice", {
           attrs: {
             name: "Cruciferous Veggies",
-            "image-path": "/images/cruciferous-veggies1.jpg",
+            "image-name": "cruciferous-veggies1.jpg",
             description: "Cruciferous Veggies (e.g., Kale, Broccoli)"
           }
         }),
         _vm._v(" "),
-        _vm._m(0),
+        _c("food-choice", {
+          attrs: {
+            name: "Dark Leafy Greens",
+            "image-name": "dark-leafy-greens.jpg"
+          }
+        }),
         _vm._v(" "),
-        _vm._m(1),
+        _c("food-choice", {
+          attrs: { name: "Ice Cream", "image-name": "cashew-ice-cream.jpg" }
+        }),
         _vm._v(" "),
-        _vm._m(2),
+        _c("food-choice", {
+          attrs: {
+            name: "Meat Substitute",
+            "image-name": "meat-substitute.jpg"
+          }
+        }),
         _vm._v(" "),
-        _vm._m(3),
+        _c("food-choice", {
+          attrs: { name: "fruit", "image-name": "fruit.jpg" }
+        }),
         _vm._v(" "),
-        _vm._m(4),
+        _c("food-choice", {
+          attrs: { name: "legumes", "image-name": "legumes.jpg" }
+        }),
         _vm._v(" "),
-        _vm._m(5),
+        _c("food-choice", {
+          attrs: { name: "Refined Starch", "image-name": "white-bread.jpg" }
+        }),
         _vm._v(" "),
-        _vm._m(6)
+        _c("food-choice", {
+          attrs: {
+            name: "Unprocessed Starch",
+            "image-name": "whole-grains.jpg",
+            description: "Unprocessed Starch (e.g. Potatoes, Whole Grains)"
+          }
+        })
       ],
       1
     ),
@@ -62619,96 +62630,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("img", {
-        attrs: {
-          src: "/images/dark-leafy-greens.jpg",
-          alt: "Dark Leafy Greens"
-        }
-      }),
-      _vm._v(" "),
-      _c("span", { staticClass: "tooltiptext" }, [_vm._v("Dark Leafy Greens")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("img", {
-        attrs: { src: "/images/cashew-ice-cream.jpg", alt: "Ice Cream" }
-      }),
-      _vm._v(" "),
-      _c("span", { staticClass: "tooltiptext" }, [_vm._v("Ice Cream")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("img", {
-        attrs: { src: "/images/meat-substitute.jpg", alt: "Meat Substitute" }
-      }),
-      _vm._v(" "),
-      _c("span", { staticClass: "tooltiptext" }, [_vm._v("Meat Substitutes")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("img", { attrs: { src: "/images/fruit.jpg", alt: "Fruit" } }),
-      _vm._v(" "),
-      _c("span", { staticClass: "tooltiptext" }, [_vm._v("Fruit")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("img", { attrs: { src: "/images/legumes.jpg", alt: "Legumes" } }),
-      _vm._v(" "),
-      _c("span", { staticClass: "tooltiptext" }, [_vm._v("Legumes")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("img", {
-        attrs: { src: "/images/white-bread.jpg", alt: "Refined Starch" }
-      }),
-      _vm._v(" "),
-      _c("span", { staticClass: "tooltiptext" }, [_vm._v("Refined Starch")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("img", {
-        attrs: {
-          src: "/images/whole-grains.jpg",
-          alt: "Whole Grains and other Starch"
-        }
-      }),
-      _vm._v(" "),
-      _c("span", { staticClass: "tooltiptext" }, [
-        _vm._v("Unprocessed Starch (e.g. Potatoes, Whole Grains)")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -63033,7 +62955,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			type: String,
 			required: true
 		},
-		imagePath: {
+		imageName: {
 			type: String,
 			required: true
 		},
@@ -63044,6 +62966,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	computed: {
 		finalDescription: function finalDescription() {
 			return this.description ? this.description : this.name;
+		},
+		imagePath: function imagePath() {
+			return "/images/" + this.imageName;
 		}
 	}
 });
