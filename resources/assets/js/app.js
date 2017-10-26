@@ -18,6 +18,7 @@ window.Vue = require('vue');
 Vue.component('Graph', require('./components/Graph.vue'));
 Vue.component('user-notifications', require('./components/UserNotifications.vue'));
 Vue.component('food-circle', require('./components/FoodCircle.vue'));
+Vue.component('food-choice', require('./components/FoodChoice.vue'));
 Vue.component('food-list', require('./components/FoodList.vue'));
 Vue.component('food', require('./components/Food.vue'));
 

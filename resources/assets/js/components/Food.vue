@@ -3,7 +3,7 @@
     <h4>{{ foodData.name }}</h4>
     <h4>{{ foodData.typeName }}</h4>
     <p>{{ foodData.mealName }}</p>
-    <p>{{ foodData.processed }}</p>
+    <p>{{ processed }}</p>
     <p>{{ foodData.description }}</p>
   </div>	
 </template>

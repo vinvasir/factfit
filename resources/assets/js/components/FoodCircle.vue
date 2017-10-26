@@ -1,10 +1,12 @@
 <template>
 	<div>
     <ul class='circle-container'>
-      <li>
-      	<img src="/images/cruciferous-veggies1.jpg" alt="Cruciferous Veggies" />
-      	<span class="tooltiptext">Cruciferous Veggies (e.g., Kale, Broccoli)</span>
-      </li>
+
+      <food-choice name="Cruciferous Veggies"
+          image-path="/images/cruciferous-veggies1.jpg"
+          description="Cruciferous Veggies (e.g., Kale, Broccoli)">
+      </food-choice>
+
       <li>
       	<img src='/images/dark-leafy-greens.jpg' alt="Dark Leafy Greens" />
       	<span class="tooltiptext">Dark Leafy Greens</span>

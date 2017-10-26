@@ -11,7 +11,7 @@ class FoodTransformer extends Transformer {
 			'description' => $food->description,
 			'typeName' => $food->typeName(),
 			'mealName' => $food->mealName(),
-			'processed' => $food->processed
+			'processed' => (boolean) $food->processed
 		];
 	}
 }
