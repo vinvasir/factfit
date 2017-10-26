@@ -5,24 +5,25 @@
       <food-choice v-for="(choice, index) in foodChoices" :key="index"
           :food-data="choice"
           @choose="selectFood($event)">
-      </food-choice>     
-    </ul>   
+      </food-choice>
 
-    <div class="form-group">
-      <select v-model="meal" class="form-control">
-        <option value="0">Breakfast</option>
-        <option value="1">Lunch</option>
-        <option value="2">Dinner</option>
-        <option value="3">Snack</option>
-      </select>
+      <li>
 
-      <button v-if="selectedFood.name.length > 0" 
-              class="btn btn-primary" 
-              @click.prevent="submitFood"
-        >
-            {{ confirmation }}
-      </button>
-    </div>
+        <select v-model="meal">
+          <option value="0">Breakfast</option>
+          <option value="1">Lunch</option>
+          <option value="2">Dinner</option>
+          <option value="3">Snack</option>
+        </select>
+
+        <button v-if="selectedFood.name.length > 0" 
+                class="btn btn-primary" 
+                @click.prevent="submitFood"
+          >
+              {{ confirmation }}
+        </button>      
+      </li>
+    </ul>
 
     <div>
       <a class="btn btn-danger" :href="endpoint + '/create'">OR Add a Custom Food</a>
@@ -108,7 +109,7 @@
     },
     computed: {
       confirmation() {
-        return `Add ${this.selectedFood.name} to your day?`
+        return `Add ${this.selectedFood.name}`
       }
     }
 	}
