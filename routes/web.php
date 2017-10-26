@@ -33,6 +33,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 
 		Route::get('/days/{day}', 'DaysController@show');
 
+		Route::get('/days/{day}/foods', 'FoodsController@index');
 		Route::post('/days/{day}/foods', 'FoodsController@store');
 
 		Route::get('/days/{day}/foods/create', 'FoodsController@create');

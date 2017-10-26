@@ -2,22 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Food;
 use App\Day;
+use App\Food;
 use App\FoodTypes\FoodTypeFactory;
-
+use App\Transformers\FoodTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FoodsController extends Controller
 {
+    /**
+     * @var  App\Transformers\FoodTransformer
+     */
+    protected $foodTransformer;
+
+    // public function __construct(FoodTransformer $foodTransformer)
+    // {
+    //     $this->foodTransformer = $foodTransformer;
+    // }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Day $day)
     {
-        //
+        return response()->json([
+            'data' => (new FoodTransformer)->transformCollection($day->foods)
+        ], 200);
     }
 
     /**

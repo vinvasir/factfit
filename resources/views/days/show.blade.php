@@ -22,6 +22,8 @@
       				<!--  Put content here -->
       				<p>Progress towards diet goal: {{ $day->food_goal_progress * 100 }}%</p>
 
+              <food-list></food-list>
+
               @foreach($foods as $food)
 
                 <food :food-data="{{ $food }}" 
@@ -40,4 +42,10 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+window.initialState = {!! json_encode([
+            'foods' => $foods
+        ]) !!};  
+</script>
 @endsection
