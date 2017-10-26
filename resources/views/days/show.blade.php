@@ -22,22 +22,9 @@
       				<!--  Put content here -->
       				<p>Progress towards diet goal: {{ $day->food_goal_progress * 100 }}%</p>
 
-              <food-list></food-list>
+              <food-list endpoint="/app/days/{{ $day->id }}/foods"></food-list>
 
-              @foreach($foods as $food)
-
-                <food :food-data="{{ $food }}" 
-                      type-name="{{ $food->typeName() }}"
-                      meal-name="{{ $food->mealName() }}">
-                </food>
-
-              @endforeach
       		</div>
-
-          <div id="food-form">
-            <food-circle endpoint="/app/days/{{ $day->id }}/foods">
-            </food-circle>
-          </div>
       </div>
     </div>
   </div>

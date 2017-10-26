@@ -1,9 +1,9 @@
 <template>
   <div class="well">
     <h4>{{ foodData.name }}</h4>
-    <h4>{{ typeName }}</h4>
-    <p>{{ mealName }}</p>
-    <p>{{ processed }}</p>
+    <h4>{{ foodData.typeName }}</h4>
+    <p>{{ foodData.mealName }}</p>
+    <p>{{ foodData.processed }}</p>
     <p>{{ foodData.description }}</p>
   </div>	
 </template>

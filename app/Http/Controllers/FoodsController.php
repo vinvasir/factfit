@@ -29,7 +29,7 @@ class FoodsController extends Controller
     public function index(Day $day)
     {
         return response()->json([
-            'data' => (new FoodTransformer)->transformCollection($day->foods)
+            'foods' => (new FoodTransformer)->transformCollection($day->foods)
         ], 200);
     }
 

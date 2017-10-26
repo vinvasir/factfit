@@ -62739,14 +62739,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+	props: {
+		endpoint: {
+			type: String,
+			required: true
+		}
+	},
 	data: function data() {
 		return {
-			foods: {
-				data: []
-			}
+			foods: []
 		};
+	},
+	created: function created() {
+		var _this = this;
+
+		axios.get(this.endpoint).then(function (_ref) {
+			var data = _ref.data;
+
+			_this.foods = data.foods;
+		});
 	}
 });
 
@@ -62760,9 +62778,19 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.foods.data, function(food) {
-      return _c("food", { attrs: { "food-data": food } })
-    })
+    [
+      _vm._l(_vm.foods, function(food) {
+        return _c("food", { attrs: { "food-data": food } })
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { id: "food-form" } },
+        [_c("food-circle", { attrs: { endpoint: _vm.endpoint } })],
+        1
+      )
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -62869,11 +62897,11 @@ var render = function() {
   return _c("div", { staticClass: "well" }, [
     _c("h4", [_vm._v(_vm._s(_vm.foodData.name))]),
     _vm._v(" "),
-    _c("h4", [_vm._v(_vm._s(_vm.typeName))]),
+    _c("h4", [_vm._v(_vm._s(_vm.foodData.typeName))]),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.mealName))]),
+    _c("p", [_vm._v(_vm._s(_vm.foodData.mealName))]),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.processed))]),
+    _c("p", [_vm._v(_vm._s(_vm.foodData.processed))]),
     _vm._v(" "),
     _c("p", [_vm._v(_vm._s(_vm.foodData.description))])
   ])
