@@ -43,9 +43,4 @@
   </div>
 </div>
 
-<script type="text/javascript">
-window.initialState = {!! json_encode([
-            'foods' => $foods
-        ]) !!};  
-</script>
 @endsection
