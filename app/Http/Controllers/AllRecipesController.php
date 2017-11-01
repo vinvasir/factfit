@@ -13,7 +13,7 @@ class AllRecipesController extends Controller
     public function show($slug)
     {
 
-    	$apiUrl = $this->baseUrl . $slug;
+    	$apiUrl = $this->baseUrl . $slug . '/';
     	// 
     	// $apiUrl = 'https://www.anddit.com/hope-portal-api/api/v1/catalog';
 
@@ -29,30 +29,11 @@ class AllRecipesController extends Controller
 
     	// dd(['url' => $apiUrl, 'auth' => $authHeader]);
 
-    	// $response = $client->request('GET', $apiUrl, ['headers' => [
-     //  		'Authorization' => $authHeader
-	    //   ]
-	    // ]);
-
-	    // dd($response->getBody());
-
-      $promise = $client->requestAsync('GET', $apiUrl, ['headers' => [
+    	$response = $client->request('GET', $apiUrl, ['headers' => [
       		'Authorization' => $authHeader
 	      ]
 	    ]);
 
-	    // dd($promise);
-
-      $promise->then(
-      	function(ResponseInterface $res) {
-      		dd($res);
-      	},
-    		function (RequestException $e) {
-	        dd($e->getMessage() . "\n");
-	        echo $e->getRequest()->getMethod();
-		    }
-      );
-
-      return [];
+	    return $response->getBody();
     }
 }
