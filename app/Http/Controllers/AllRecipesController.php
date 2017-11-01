@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
+use Psr\Http\Message\ResponseInterface;
 
 class AllRecipesController extends Controller
 {
@@ -12,15 +14,45 @@ class AllRecipesController extends Controller
     {
 
     	$apiUrl = $this->baseUrl . $slug;
+    	// 
+    	// $apiUrl = 'https://www.anddit.com/hope-portal-api/api/v1/catalog';
+
+    	$headers = [
+    		'Authorization' => 'Token ' . env("RECIPE_API_KEY")
+    	];
 
     	$client = new \GuzzleHttp\Client();
 
-      $response = $client->request('GET', $apiUrl, [
-      	'headers' => [
-      		'Authorization' => 'Token ' . env("RECIPE_API_KEY")
-      	]
-      ]);
+    	// dd($client);
 
-      return $response;
+    	$authHeader = 'Token ' . env("RECIPE_API_KEY");
+
+    	// dd(['url' => $apiUrl, 'auth' => $authHeader]);
+
+    	// $response = $client->request('GET', $apiUrl, ['headers' => [
+     //  		'Authorization' => $authHeader
+	    //   ]
+	    // ]);
+
+	    // dd($response->getBody());
+
+      $promise = $client->requestAsync('GET', $apiUrl, ['headers' => [
+      		'Authorization' => $authHeader
+	      ]
+	    ]);
+
+	    // dd($promise);
+
+      $promise->then(
+      	function(ResponseInterface $res) {
+      		dd($res);
+      	},
+    		function (RequestException $e) {
+	        dd($e->getMessage() . "\n");
+	        echo $e->getRequest()->getMethod();
+		    }
+      );
+
+      return [];
     }
 }
