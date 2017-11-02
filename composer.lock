@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d35f95bbd0908b6059fca13a8808f4ab",
+    "content-hash": "b44d379348f534dcfc32ace27eb46bdf",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -259,16 +259,16 @@
         },
         {
             "name": "backpack/pagemanager",
-            "version": "1.1.21",
+            "version": "1.1.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/PageManager.git",
-                "reference": "7bf829fcda196327658bd3759a2b56131b604dda"
+                "reference": "0d94d2c02b0b8da4d917ce99344c7361a369f89a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/PageManager/zipball/7bf829fcda196327658bd3759a2b56131b604dda",
-                "reference": "7bf829fcda196327658bd3759a2b56131b604dda",
+                "url": "https://api.github.com/repos/Laravel-Backpack/PageManager/zipball/0d94d2c02b0b8da4d917ce99344c7361a369f89a",
+                "reference": "0d94d2c02b0b8da4d917ce99344c7361a369f89a",
                 "shasum": ""
             },
             "require": {
@@ -326,7 +326,7 @@
                 "presentation website",
                 "wordpress"
             ],
-            "time": "2017-08-30T20:21:52+00:00"
+            "time": "2017-11-02T08:20:13+00:00"
         },
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -2049,7 +2049,7 @@
         },
         {
             "name": "mtdowling/cron-expression",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/cron-expression.git",
