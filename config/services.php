@@ -13,6 +13,9 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+   'pv_recipe_scraper' => [
+        'key' => env('RECIPE_API_KEY')
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),

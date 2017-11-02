@@ -11,6 +11,15 @@
 |
 */
 
+App::singleton('App\PVMicroservices\RecipeScraper', function() {
+	return new \GuzzleHttp\Client([
+		'base_url' => 'https://nfact-recipes.herokuapp.com/api/allrecipes/',
+		'headers' => [
+			'Authorization' => 'Token ' . config('services.pv_recipe_scraper.key')
+		]
+	]);
+});
+
 Route::get('/', function () {
     return view('home');
 });
