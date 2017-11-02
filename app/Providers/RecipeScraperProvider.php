@@ -2,11 +2,16 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\AllRecipesController;
 use Illuminate\Support\ServiceProvider;
 
 class RecipeScraperProvider extends ServiceProvider
 {
+    protected $defer = true;
+
+    protected $controllers = [
+        'App\Http\Controllers\AllRecipesController'
+    ];
+
     /**
      * Bootstrap the application services.
      *
@@ -33,8 +38,10 @@ class RecipeScraperProvider extends ServiceProvider
             ]);
         });
 
-        $this->app->when(AllRecipesController::class)
-             ->needs(\GuzzleHttp\Client::class)
-             ->give('PVRecipeScraper');
+        foreach ($this->controllers as $controller) {
+            $this->app->when($controller)
+                 ->needs(\GuzzleHttp\Client::class)
+                 ->give('PVRecipeScraper');
+        }
     }
 }
