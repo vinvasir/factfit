@@ -7,5 +7,5 @@ use Illuminate\Http\Request;
 
 class TwoPeasController extends RecipeController implements RecipeControllerInterface
 {
-		protected $pathPrefix = 'twopeasandtheirpod/';
+		public $pathPrefix = 'twopeasandtheirpod/';
 }
