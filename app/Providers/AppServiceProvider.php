@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
+use App\Http\Controllers\AllRecipesController;
 use Backpack\PageManager\app\Models\Page;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
         }
 
-        $this->app->singleton(\GuzzleHttp\Client::class, function() {
+        $this->app->singleton('PVRecipeScraper', function() {
             return new \GuzzleHttp\Client([
                 'base_uri' => 'https://nfact-recipes.herokuapp.com/api/',
                 'headers' => [
@@ -39,5 +39,9 @@ class AppServiceProvider extends ServiceProvider
                 ]
             ]);
         });
+
+        $this->app->when(AllRecipesController::class)
+             ->needs(\GuzzleHttp\Client::class)
+             ->give('PVRecipeScraper');
     }
 }
