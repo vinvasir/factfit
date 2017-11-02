@@ -53,6 +53,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 		Route::post('/friendships/{user}/accept', 'FriendshipsController@accept');
 
 		Route::get('/recipes-api/allrecipes/{slug}', 'AllRecipesController@show');
+		Route::get('/recipes-api/bbcgoodfood/{slug}', 'BBCGoodFoodController@show');
+		Route::get('/recipes-api/twopeasandtheirpod/{slug}', 'TwoPeasController@show');
 });
 
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/

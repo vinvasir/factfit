@@ -9,7 +9,9 @@ class RecipeScraperProvider extends ServiceProvider
     protected $defer = true;
 
     protected $controllers = [
-        'App\Http\Controllers\AllRecipesController'
+        'App\Http\Controllers\AllRecipesController',
+        'App\Http\Controllers\BBCGoodFoodController',
+        'App\Http\Controllers\TwoPeasController'
     ];
 
     /**
