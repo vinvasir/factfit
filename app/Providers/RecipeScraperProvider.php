@@ -31,7 +31,7 @@ class RecipeScraperProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('PVRecipeScraper', function() {
+        $this->app->singleton(\GuzzleHttp\Client::class, function() {
             return new \GuzzleHttp\Client([
                 'base_uri' => 'https://nfact-recipes.herokuapp.com/api/',
                 'headers' => [
@@ -40,10 +40,10 @@ class RecipeScraperProvider extends ServiceProvider
             ]);
         });
 
-        foreach ($this->controllers as $controller) {
-            $this->app->when($controller)
-                 ->needs(\GuzzleHttp\Client::class)
-                 ->give('PVRecipeScraper');
-        }
+        // foreach ($this->controllers as $controller) {
+        //     $this->app->when($controller)
+        //          ->needs(\GuzzleHttp\Client::class)
+        //          ->give('PVRecipeScraper');
+        // }
     }
 }
