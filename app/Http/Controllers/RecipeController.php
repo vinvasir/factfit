@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 abstract class RecipeController extends Controller {
-		public $scraper;
+		protected $scraper;
 
 		public function __construct(\GuzzleHttp\Client $scraper)
 		{
