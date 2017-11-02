@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
         }
 
-        $this->app->singleton('App\PVMicroservices\RecipeScraper', function() {
+        $this->app->singleton(\GuzzleHttp\Client::class, function() {
             return new \GuzzleHttp\Client([
                 'base_uri' => 'https://nfact-recipes.herokuapp.com/api/allrecipes/',
                 'headers' => [
