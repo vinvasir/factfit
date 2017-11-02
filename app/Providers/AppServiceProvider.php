@@ -33,11 +33,11 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(\GuzzleHttp\Client::class, function() {
             return new \GuzzleHttp\Client([
-                'base_uri' => 'https://nfact-recipes.herokuapp.com/api/allrecipes/',
+                'base_uri' => 'https://nfact-recipes.herokuapp.com/api/',
                 'headers' => [
                     'Authorization' => 'Token ' . config('services.pv_recipe_scraper.key')
                 ]
             ]);
-        });        
+        });
     }
 }

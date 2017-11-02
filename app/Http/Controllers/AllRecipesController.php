@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\RecipeControllerInterface;
 use Illuminate\Http\Request;
 
-class AllRecipesController extends Controller
+class AllRecipesController extends RecipeController implements RecipeControllerInterface
 {
-		private $scraper;
-
-		public function __construct(\GuzzleHttp\Client $scraper)
-		{
-				$this->scraper = $scraper;
-		}
+		private $pathPrefix = 'allrecipes/';
 
     public function show($slug)
     {
-	    return $this->scraper->get($slug . '/')->getBody();
+	    return $this->buildRequest($slug)->getBody();
+    }
+
+    public function buildRequest($str = '')
+    {
+    	$endpoint = $this->pathPrefix . $str . '/';
+
+    	return $this->scraper->get($endpoint);
     }
 }
