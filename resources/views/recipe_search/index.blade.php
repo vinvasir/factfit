@@ -8,6 +8,7 @@
     <div class="col-md-8 col-md-offset-2">
       <h1>Search Recipes Below:</h1>
 
+      <recipe-search></recipe-search>
     </div>
 
   </div>

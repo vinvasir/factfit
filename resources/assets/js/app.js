@@ -22,7 +22,11 @@ Vue.component('food-circle', require('./components/FoodCircle.vue'));
 Vue.component('food-choice', require('./components/FoodChoice.vue'));
 Vue.component('food-list', require('./components/FoodList.vue'));
 Vue.component('food', require('./components/Food.vue'));
+Vue.component('recipe-search', require('./components/RecipeSearch.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+      recipe: null
+    }
 });
