@@ -4999,20 +4999,6 @@ module.exports = Element;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = {};
-module.exports.Arc = __webpack_require__(173);
-module.exports.Line = __webpack_require__(174);
-module.exports.Point = __webpack_require__(175);
-module.exports.Rectangle = __webpack_require__(176);
-
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -5106,6 +5092,20 @@ module.exports = function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {};
+module.exports.Arc = __webpack_require__(173);
+module.exports.Line = __webpack_require__(174);
+module.exports.Point = __webpack_require__(175);
+module.exports.Rectangle = __webpack_require__(176);
 
 
 /***/ }),
@@ -18040,7 +18040,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(136);
-module.exports = __webpack_require__(234);
+module.exports = __webpack_require__(237);
 
 
 /***/ }),
@@ -18071,9 +18071,9 @@ Vue.component('food-circle', __webpack_require__(217));
 Vue.component('food-choice', __webpack_require__(225));
 Vue.component('food-list', __webpack_require__(228));
 Vue.component('food', __webpack_require__(231));
-Vue.component('recipe-search', __webpack_require__(243));
+Vue.component('recipe-search', __webpack_require__(234));
 
-var app = new Vue({
+window.app = new Vue({
   el: '#app',
   data: {
     recipe: null
@@ -48881,7 +48881,7 @@ module.exports = Vue$3;
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(6)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(162)
 /* template */
@@ -48984,7 +48984,7 @@ __webpack_require__(168)(Chart);
 
 Chart.defaults = __webpack_require__(2);
 Chart.Element = __webpack_require__(4);
-Chart.elements = __webpack_require__(5);
+Chart.elements = __webpack_require__(6);
 Chart.Interaction = __webpack_require__(18);
 Chart.platform = __webpack_require__(19);
 
@@ -58940,7 +58940,7 @@ webpackContext.id = 193;
 
 
 var defaults = __webpack_require__(2);
-var elements = __webpack_require__(5);
+var elements = __webpack_require__(6);
 var helpers = __webpack_require__(1);
 
 defaults._set('bar', {
@@ -59368,7 +59368,7 @@ module.exports = function(Chart) {
 
 
 var defaults = __webpack_require__(2);
-var elements = __webpack_require__(5);
+var elements = __webpack_require__(6);
 var helpers = __webpack_require__(1);
 
 defaults._set('bubble', {
@@ -59555,7 +59555,7 @@ module.exports = function(Chart) {
 
 
 var defaults = __webpack_require__(2);
-var elements = __webpack_require__(5);
+var elements = __webpack_require__(6);
 var helpers = __webpack_require__(1);
 
 defaults._set('doughnut', {
@@ -59861,7 +59861,7 @@ module.exports = function(Chart) {
 
 
 var defaults = __webpack_require__(2);
-var elements = __webpack_require__(5);
+var elements = __webpack_require__(6);
 var helpers = __webpack_require__(1);
 
 defaults._set('line', {
@@ -60201,7 +60201,7 @@ module.exports = function(Chart) {
 
 
 var defaults = __webpack_require__(2);
-var elements = __webpack_require__(5);
+var elements = __webpack_require__(6);
 var helpers = __webpack_require__(1);
 
 defaults._set('polarArea', {
@@ -60430,7 +60430,7 @@ module.exports = function(Chart) {
 
 
 var defaults = __webpack_require__(2);
-var elements = __webpack_require__(5);
+var elements = __webpack_require__(6);
 var helpers = __webpack_require__(1);
 
 defaults._set('radar', {
@@ -60782,7 +60782,7 @@ module.exports = function(Chart) {
 
 
 var defaults = __webpack_require__(2);
-var elements = __webpack_require__(5);
+var elements = __webpack_require__(6);
 var helpers = __webpack_require__(1);
 
 defaults._set('global', {
@@ -61945,7 +61945,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(6)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(213)
 /* template */
@@ -62090,7 +62090,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(6)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(216)
 /* template */
@@ -62167,7 +62167,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(218)
 }
-var normalizeComponent = __webpack_require__(6)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(223)
 /* template */
@@ -62817,7 +62817,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(6)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(226)
 /* template */
@@ -62929,7 +62929,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(6)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(229)
 /* template */
@@ -63069,7 +63069,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(6)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(232)
 /* template */
@@ -63179,28 +63179,14 @@ if (false) {
 
 /***/ }),
 /* 234 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(6)
+var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(244)
+var __vue_script__ = __webpack_require__(235)
 /* template */
-var __vue_template__ = __webpack_require__(245)
+var __vue_template__ = __webpack_require__(236)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -63238,7 +63224,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 244 */
+/* 235 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63263,7 +63249,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       baseUrl: '/app/recipes-api',
       recipeWebsite: 'allrecipes',
-      recipeFullName: ''
+      recipeFullName: '',
+      recipeData: {}
     };
   },
 
@@ -63277,17 +63264,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     searchRecipeApi: function searchRecipeApi() {
+      var _this = this;
+
       console.log('searching ' + this.fullEndpoint);
 
-      axios.get(this.fullEndpoint).then(function (res) {
-        console.log(res);
+      axios.get(this.fullEndpoint).then(function (_ref) {
+        var data = _ref.data;
+
+        console.log(data.recipe);
+
+        _this.recipeData = data.recipe;
+
+        window.app.$emit('RECIPE_SELECTED', _this.recipeData);
       });
     }
   }
 });
 
 /***/ }),
-/* 245 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63381,6 +63376,12 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-df28ccba", module.exports)
   }
 }
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

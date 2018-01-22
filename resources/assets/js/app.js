@@ -24,7 +24,7 @@ Vue.component('food-list', require('./components/FoodList.vue'));
 Vue.component('food', require('./components/Food.vue'));
 Vue.component('recipe-search', require('./components/RecipeSearch.vue'));
 
-const app = new Vue({
+window.app = new Vue({
     el: '#app',
     data: {
       recipe: null

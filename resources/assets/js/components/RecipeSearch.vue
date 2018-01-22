@@ -18,7 +18,8 @@
       return {
         baseUrl: '/app/recipes-api',
         recipeWebsite: 'allrecipes',
-        recipeFullName: ''
+        recipeFullName: '',
+        recipeData: {}
       }
     },
     computed: {
@@ -34,8 +35,12 @@
         console.log(`searching ${this.fullEndpoint}`);
 
         axios.get(this.fullEndpoint)
-          .then(res => {
-            console.log(res)
+          .then(({data}) => {
+            console.log(data.recipe);
+
+            this.recipeData = data.recipe;
+
+            window.app.$emit('RECIPE_SELECTED', this.recipeData);
           })
       }
     }
