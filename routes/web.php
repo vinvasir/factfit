@@ -52,6 +52,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
 		Route::get('/friendships/{user}/accept', 'FriendshipsController@confirmation');
 		Route::post('/friendships/{user}/accept', 'FriendshipsController@accept');
 
+		Route::get('/recipes/search', 'RecipeSearchController@index');
+
 		Route::get('/recipes-api/allrecipes/{slug}', 'AllRecipesController@show');
 		Route::get('/recipes-api/bbcgoodfood/{slug}', 'BBCGoodFoodController@show');
 		Route::get('/recipes-api/twopeasandtheirpod/{slug}', 'TwoPeasController@show');

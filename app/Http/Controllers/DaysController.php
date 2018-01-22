@@ -24,8 +24,6 @@ class DaysController extends Controller
             }',
         ])->addEvents($days);
 
-        // dd($calendar->script());
-
         return view('days.index', compact('days', 'calendar'));
     }
 
