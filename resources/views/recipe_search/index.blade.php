@@ -9,6 +9,8 @@
       <h1>Search Recipes Below:</h1>
 
       <recipe-search></recipe-search>
+
+      <recipe-detail></recipe-detail>
     </div>
 
   </div>

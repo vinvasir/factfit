@@ -40,7 +40,7 @@
 
             this.recipeData = data.recipe;
 
-            window.app.$emit('RECIPE_SELECTED', this.recipeData);
+            window.eventHub.$emit('RECIPE_SELECTED', this.recipeData);
           })
       }
     }

@@ -23,10 +23,11 @@ Vue.component('food-choice', require('./components/FoodChoice.vue'));
 Vue.component('food-list', require('./components/FoodList.vue'));
 Vue.component('food', require('./components/Food.vue'));
 Vue.component('recipe-search', require('./components/RecipeSearch.vue'));
+Vue.component('recipe-detail', require('./components/RecipeDetail.vue'));
+
+const eventHub = new Vue();
+window.eventHub = eventHub;
 
 window.app = new Vue({
-    el: '#app',
-    data: {
-      recipe: null
-    }
+    el: '#app'
 });

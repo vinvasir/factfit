@@ -18040,7 +18040,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(136);
-module.exports = __webpack_require__(237);
+module.exports = __webpack_require__(240);
 
 
 /***/ }),
@@ -18072,12 +18072,13 @@ Vue.component('food-choice', __webpack_require__(225));
 Vue.component('food-list', __webpack_require__(228));
 Vue.component('food', __webpack_require__(231));
 Vue.component('recipe-search', __webpack_require__(234));
+Vue.component('recipe-detail', __webpack_require__(237));
+
+var eventHub = new Vue();
+window.eventHub = eventHub;
 
 window.app = new Vue({
-  el: '#app',
-  data: {
-    recipe: null
-  }
+  el: '#app'
 });
 
 /***/ }),
@@ -63275,7 +63276,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         _this.recipeData = data.recipe;
 
-        window.app.$emit('RECIPE_SELECTED', _this.recipeData);
+        window.eventHub.$emit('RECIPE_SELECTED', _this.recipeData);
       });
     }
   }
@@ -63379,6 +63380,115 @@ if (false) {
 
 /***/ }),
 /* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(238)
+/* template */
+var __vue_template__ = __webpack_require__(239)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/RecipeDetail.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RecipeDetail.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7cffcfcc", Component.options)
+  } else {
+    hotAPI.reload("data-v-7cffcfcc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 238 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    var _this = this;
+
+    window.eventHub.$on('RECIPE_SELECTED', function (recipeData) {
+      _this.recipe = recipeData;
+    });
+  },
+  data: function data() {
+    return {
+      recipe: {}
+    };
+  }
+});
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "ul",
+      { staticClass: "list-group" },
+      _vm._l(_vm.recipe.ingredients, function(ing) {
+        return _c("li", { staticClass: "list-group-item" }, [
+          _vm._v("\n      " + _vm._s(ing) + "\n    ")
+        ])
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7cffcfcc", module.exports)
+  }
+}
+
+/***/ }),
+/* 240 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
