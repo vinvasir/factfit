@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5db625bb4d3d74107d700ef620bbb5db",
+    "content-hash": "aedebc146150fdb91050cff3c110554c",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -565,16 +565,16 @@
         },
         {
             "name": "cnvs/easel",
-            "version": "v3.4.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cnvs/easel.git",
-                "reference": "3fb73197254348b4310f58f6be12b3ace0580667"
+                "reference": "38330a2e24d6021f900a2076b737fcdb70aad199"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cnvs/easel/zipball/3fb73197254348b4310f58f6be12b3ace0580667",
-                "reference": "3fb73197254348b4310f58f6be12b3ace0580667",
+                "url": "https://api.github.com/repos/cnvs/easel/zipball/38330a2e24d6021f900a2076b737fcdb70aad199",
+                "reference": "38330a2e24d6021f900a2076b737fcdb70aad199",
                 "shasum": ""
             },
             "require": {
@@ -583,11 +583,11 @@
                 "erusev/parsedown": "^1.6",
                 "illuminate/support": "5.*",
                 "larapack/config-writer": "^1.0",
-                "laravel/scout": "2.*",
+                "laravel/scout": "3.*",
                 "maatwebsite/excel": "^2.1",
                 "php": ">=5.6.4",
                 "talvbansal/media-manager": "^2.5",
-                "teamtnt/laravel-scout-tntsearch-driver": "2.*"
+                "teamtnt/laravel-scout-tntsearch-driver": "3.*"
             },
             "require-dev": {
                 "fzaninotto/faker": "~1.4",
@@ -596,7 +596,7 @@
                 "symfony/dom-crawler": "~3.0"
             },
             "suggest": {
-                "cnvs/paper-dark": "Official dark theme for Canvas."
+                "cnvs/paper-dark": "Official dark theme for Canvas (~1.0)."
             },
             "type": "canvas-framework",
             "autoload": {
@@ -622,7 +622,7 @@
                 "canvas",
                 "framework"
             ],
-            "time": "2017-08-04T01:13:12+00:00"
+            "time": "2017-12-29T21:23:19+00:00"
         },
         {
             "name": "cocur/slugify",
@@ -1970,25 +1970,25 @@
         },
         {
             "name": "laravel/scout",
-            "version": "v2.0.3",
+            "version": "v3.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/scout.git",
-                "reference": "c009e8694aa486179a929b69c48e0897007eb3e0"
+                "reference": "154beb9255cef7e341c5838824ed1234e71e194d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/scout/zipball/c009e8694aa486179a929b69c48e0897007eb3e0",
-                "reference": "c009e8694aa486179a929b69c48e0897007eb3e0",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/154beb9255cef7e341c5838824ed1234e71e194d",
+                "reference": "154beb9255cef7e341c5838824ed1234e71e194d",
                 "shasum": ""
             },
             "require": {
-                "illuminate/bus": "~5.3",
-                "illuminate/contracts": "~5.3",
-                "illuminate/database": "~5.3",
-                "illuminate/pagination": "~5.3",
-                "illuminate/queue": "~5.3",
-                "illuminate/support": "~5.3",
+                "illuminate/bus": "~5.4",
+                "illuminate/contracts": "~5.4",
+                "illuminate/database": "~5.4",
+                "illuminate/pagination": "~5.4",
+                "illuminate/queue": "~5.4",
+                "illuminate/support": "~5.4",
                 "php": ">=5.6.4"
             },
             "require-dev": {
@@ -2002,7 +2002,12 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "3.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Scout\\ScoutServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -2026,7 +2031,7 @@
                 "laravel",
                 "search"
             ],
-            "time": "2017-06-01T16:49:35+00:00"
+            "time": "2018-01-26T22:15:03+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -4292,24 +4297,28 @@
         },
         {
             "name": "teamtnt/laravel-scout-tntsearch-driver",
-            "version": "v2.0.5",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/teamtnt/laravel-scout-tntsearch-driver.git",
-                "reference": "c3ce55bd3170ff14c8e116de3ea418237ec18d14"
+                "reference": "e5d81a856e6ab391d58e90a17bbcb2643c0d92d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/teamtnt/laravel-scout-tntsearch-driver/zipball/c3ce55bd3170ff14c8e116de3ea418237ec18d14",
-                "reference": "c3ce55bd3170ff14c8e116de3ea418237ec18d14",
+                "url": "https://api.github.com/repos/teamtnt/laravel-scout-tntsearch-driver/zipball/e5d81a856e6ab391d58e90a17bbcb2643c0d92d5",
+                "reference": "e5d81a856e6ab391d58e90a17bbcb2643c0d92d5",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "~5.3",
-                "illuminate/database": "~5.3",
-                "illuminate/support": "~5.3",
+                "illuminate/bus": "~5.4",
+                "illuminate/contracts": "~5.4",
+                "illuminate/database": "~5.4",
+                "illuminate/pagination": "~5.4",
+                "illuminate/queue": "~5.4",
+                "illuminate/support": "~5.4",
                 "laravel/scout": "*",
-                "teamtnt/tntsearch": "1.0.*"
+                "php": ">=5.6.4",
+                "teamtnt/tntsearch": "1.3.*"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9",
@@ -4322,6 +4331,11 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "TeamTNT\\Scout\\TNTSearchScoutServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -4346,20 +4360,20 @@
                 "search",
                 "tntsearch"
             ],
-            "time": "2017-04-20T11:06:00+00:00"
+            "time": "2017-12-18T22:49:54+00:00"
         },
         {
             "name": "teamtnt/tntsearch",
-            "version": "v1.0.7",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/teamtnt/tntsearch.git",
-                "reference": "97e31a259fe289e21519386b0f326b7fdf27579e"
+                "reference": "4b7c36c6418487b9eeede6254ece9c830ea7d57c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/teamtnt/tntsearch/zipball/97e31a259fe289e21519386b0f326b7fdf27579e",
-                "reference": "97e31a259fe289e21519386b0f326b7fdf27579e",
+                "url": "https://api.github.com/repos/teamtnt/tntsearch/zipball/4b7c36c6418487b9eeede6254ece9c830ea7d57c",
+                "reference": "4b7c36c6418487b9eeede6254ece9c830ea7d57c",
                 "shasum": ""
             },
             "require": {
@@ -4402,7 +4416,7 @@
                 "teamtnt",
                 "tntsearch"
             ],
-            "time": "2017-09-09T21:43:22+00:00"
+            "time": "2018-01-31T14:48:14+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -6152,6 +6166,12 @@
     ],
     "aliases": [
         {
+            "alias": "3.4.3",
+            "alias_normalized": "3.4.3.0",
+            "version": "9999999-dev",
+            "package": "cnvs/easel"
+        },
+        {
             "alias": "1.1.4",
             "alias_normalized": "1.1.4.0",
             "version": "9999999-dev",
@@ -6160,6 +6180,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "cnvs/easel": 20,
         "laracasts/generators": 20
     },
     "prefer-stable": false,
