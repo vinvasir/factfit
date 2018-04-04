@@ -83,17 +83,6 @@ return [
     */
     'blog_prefix' => 'blog',
 
-
-    /*
-    |--------------------------------------------------------------------------
-    | Canvas Configuration : Admin Prefix
-    |--------------------------------------------------------------------------
-    |
-    | Main prefix for blog admin area.
-    |
-    */
-    'admin_prefix' => 'blog-canvas',
-
     /*
     |--------------------------------------------------------------------------
     | Canvas Configuration : Auth Prefix
@@ -102,7 +91,7 @@ return [
     | Auth prefix for blog.
     |
     */
-    'auth_prefix' => 'canvas-auth',
+    'auth_prefix' => 'auth',
 
     /*
     |--------------------------------------------------------------------------

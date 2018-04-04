@@ -15,20 +15,17 @@ Route::get('/', function () {
     return view('home');
 });
 
+Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Admin group
-Route::group(['prefix' => 'bp-admin', 'middleware' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     CRUD::resource('customer', 'Admin\CustomerCrudController');
-});
-
-Route::group(['prefix' => 'app-auth'], function() {
-	Auth::routes();
 });
 
 // App group
 Route::group(['prefix' => 'app', 'middleware' => 'auth'], function() {
-
 		Route::get('/days', 'DaysController@index');
 		Route::post('/days', 'DaysController@store');
 
