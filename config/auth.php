@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        
+        'canvas' => [
+            'driver' => 'session',
+            'provider' => 'canvas_users',
+        ],        
     ],
 
     /*
@@ -68,6 +73,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'canvas_users' => [
+            'driver' => 'eloquent',
+            'model' => \Canvas\Models\User::class,
         ],
 
         // 'users' => [
@@ -97,6 +107,13 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+
+        'canvas_users' => [
+            'provider' => 'canvas_users',
+            'email' => 'auth.emails.password',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],        
     ],
 
 ];
